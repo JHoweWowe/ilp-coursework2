@@ -70,11 +70,22 @@ public final class AppUtils {
 		return sensorPoints;
 	}
 	
-	// Back-end methods
+	/** Back-end methods **/
+	// Creates URL String
 	private static String createURLString(String dayStr, String monthStr, String yearStr, String portStr) {
 		String urlString = "http://localhost:";
 		urlString = urlString + portStr + "/maps/" + yearStr + "/" + monthStr + "/" + dayStr + "/";
 		urlString += "air-quality-data.json";
+		return urlString;
+	}
+	
+	// Create URL String for obtaining coordinates of that String-based location after getting the SensorPoint location
+	private static String createURLString2(String sensorPointLocation) {
+		// Assume connection 
+		String urlString = "http://localhost:9898";
+		String[] words = sensorPointLocation.split("[.]");
+		urlString = urlString + "/words/" + words[0] + "/" + words[1] + "/" + words[2] + "/";
+		urlString += "details.json";
 		return urlString;
 	}
 	
@@ -109,13 +120,13 @@ public final class AppUtils {
 		return response;
 	}
 	
-	// Read File using InputStream- please update
+	// Read File using InputStream
 	private static BufferedReader readFile(URL url) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
 		return br;
 	}
 	
-	// Parsing JSON to Java Object which will be added as a Point in Main function
+	// MAIN METHOD FOR parsing JSON to Java Object which will be added as a Point in Main function
 	private static List<SensorPoint> parseJson(URL url) {
 		
 		BufferedReader br = null;
@@ -141,10 +152,17 @@ public final class AppUtils {
 				
 				// NOTE WARNING: JSONObject can return null- please check
 				String location = currentObject.get("location").getAsString();
+				
+				// From the location, obtain coordinates and assign them to SensorPoint
+				double[] coordinates = AppUtils.fetchSensorPointLocationCoords(location);
+				
+				double longitude = coordinates[0];
+				double latitude = coordinates[1];
+				
 				double batteryPercentage = currentObject.get("battery").getAsDouble();
 				String reading = currentObject.get("reading").getAsString();
 				
-				SensorPoint sensorpoint = new SensorPoint(location,batteryPercentage,reading);
+				SensorPoint sensorpoint = new SensorPoint(location,longitude,latitude,batteryPercentage,reading);
 				sensorPointList.add(sensorpoint);
 			}		
 		}
@@ -160,8 +178,36 @@ public final class AppUtils {
 		
 	}
     
+	public static double[] fetchSensorPointLocationCoords(String sensorPointLocation) throws MalformedURLException {
+
+		// First create HTTP client
+		var client = HttpClient.newHttpClient();
+		
+		// Then create URL String
+		String urlString = AppUtils.createURLString2(sensorPointLocation);
+		
+		// Create HTTPRequest
+		HttpRequest request = createHttpRequest(urlString);
+		
+		// Send HTTPResponse
+		HttpResponse<String> response = null;
+		try {
+			response = sendHttpResponse(client, request);
+			System.out.println(response.uri());
+			System.out.println(response.uri().toURL());
+		} 
+		catch (IOException | InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		double[] coordinates = AppUtils.parseJsonCoords(response.uri().toURL());
+		
+		return coordinates;
+		
+	}
+	
 	// Interested in obtaining coordinates from the SensorPoint's location
-	public static double[] coordinatesFromLocation(String sensorPointLocation) {
+	private static double[] parseJsonCoords(URL url) {
 		// Assume coordinates array has length of 2
 		
 		BufferedReader br = null;
@@ -169,7 +215,8 @@ public final class AppUtils {
 		
 		try {
 			// Note: BufferedReader should read details.json somewhere else
-			br = new BufferedReader(new FileReader("details.json"));
+			//br = new BufferedReader(new FileReader("details.json"));
+			br = AppUtils.readFile(url);
 			
 			JsonObject jObject = new Gson().fromJson(br, JsonObject.class);
 			
@@ -185,9 +232,17 @@ public final class AppUtils {
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		return coordinates;
 		
 	}
 
+	// Main method- for debugging purposes ONLY
+	public static void main(String[] args) {
+		System.out.println(AppUtils.createURLString2("slips.mass.baking"));
+	}
+	
 }

@@ -22,7 +22,10 @@ public class App {
     // Hidden function
     public static void createPoints() {
     	
-        double[] coordinates = AppUtils.coordinatesFromLocation("test");
+    	double[] coordinates = new double[2];
+    	coordinates[0] = 0.0;
+    	coordinates[1] = 0.0;
+    	
         Point testPoint = Point.fromLngLat(coordinates[0], coordinates[1]);
         
         var featureTwo = Feature.fromGeometry(testPoint);
@@ -74,10 +77,24 @@ public class App {
     	
     	// Test LOL- THAT IS THE FUCKING HARDEST SHIT I HAVE DONE
     	List<SensorPoint> points = AppUtils.fetchSensorPointData(dayStr, monthStr, yearStr, portStr);
-    	for (SensorPoint point : points) {
-    		System.out.println(point.getLocation());
+    	
+    	var listOfPoints = new ArrayList<Point>();
+    	var features = new ArrayList<Feature>();
+    	
+    	for (SensorPoint sensorPoint : points) {
+    		
+    		// For debugging
+    		System.out.println(sensorPoint.getLocation());
+    		System.out.println(sensorPoint.getLongitude() + " " + sensorPoint.getLatitude());
+    		
+    		Point p = Point.fromLngLat(sensorPoint.getLongitude(), sensorPoint.getLatitude());
+    		var feature = Feature.fromGeometry(p);
+    		features.add(feature);
     	}
     	
+    	var featureCollection = FeatureCollection.fromFeatures(features);
+    	
+        System.out.println(featureCollection.toJson());
     	
     }
 }
