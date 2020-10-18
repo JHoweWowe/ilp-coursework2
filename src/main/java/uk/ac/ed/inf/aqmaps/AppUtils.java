@@ -29,10 +29,17 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject; 
+import com.google.gson.JsonObject;
+import com.mapbox.geojson.FeatureCollection;
+import com.mapbox.geojson.Geometry;
+import com.mapbox.geojson.Point;
+import com.mapbox.geojson.Polygon; 
 
 
 /**
+ * Application Utility class which handles the back-end of the web application
+ * especially includes parsing the JSON files and connect to HTTP Server respectively
+ * 
  * Determine which methods should be determined private and public
  * Research more in detail and explain differences
  * 
@@ -42,37 +49,17 @@ import com.google.gson.JsonObject;
 
 public final class AppUtils {
 	
-	// Main utility function for obtaining a list of SensorPoints- to be called in main class
-	public static List<SensorPoint> fetchSensorPointData(String dayStr, String monthStr, String yearStr, String portStr) throws Exception {
 		
-		// First creates a HTTP Client- usually from web browser
-		var client = HttpClient.newHttpClient();
-		
-		// Then create URL String from given parameters
-		String urlString = AppUtils.createURLString(dayStr, monthStr, yearStr, portStr);
-		
-		// Create HTTPRequest
-		HttpRequest request = createHttpRequest(urlString);
-		
-		// Send HTTPResponse
-		HttpResponse<String> response = null;
-		try {
-			response = sendHttpResponse(client, request);
-			System.out.println(response.uri());
-			System.out.println(response.uri().toURL());
-		} 
-		catch (IOException | InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		List<SensorPoint> sensorPoints = parseJson(response.uri().toURL());
-		
-		return sensorPoints;
+	/** 3 helper methods for creating URL string, each with a different purpose **/
+	
+	// Creates URL String for obtaining No-Fly-Zones buildings
+	private static String createURLStringForBuildings() {
+		String urlString = "http://localhost:9898/buildings/no-fly-zones.geojson";
+		return urlString;
 	}
 	
-	/** Back-end methods **/
-	// Creates URL String
-	private static String createURLString(String dayStr, String monthStr, String yearStr, String portStr) {
+	// Creates URL String for obtaining the SensorPoints Air Quality details
+	private static String createURLStringForSensorPointsAirQualityData(String dayStr, String monthStr, String yearStr, String portStr) {
 		String urlString = "http://localhost:";
 		urlString = urlString + portStr + "/maps/" + yearStr + "/" + monthStr + "/" + dayStr + "/";
 		urlString += "air-quality-data.json";
@@ -80,7 +67,7 @@ public final class AppUtils {
 	}
 	
 	// Create URL String for obtaining coordinates of that String-based location after getting the SensorPoint location
-	private static String createURLString2(String sensorPointLocation) {
+	private static String createURLStringForSensorPointLocationDetails(String sensorPointLocation) {
 		// Assume connection 
 		String urlString = "http://localhost:9898";
 		String[] words = sensorPointLocation.split("[.]");
@@ -89,17 +76,17 @@ public final class AppUtils {
 		return urlString;
 	}
 	
-	private static HttpRequest createHttpRequest(String urlString) {
-		
+	/** Helper back-end methods to create and send HttpRequest respectively **/
+	
+	// Creates HttpRequest using the URL given in String format
+	private static HttpRequest createHttpRequest(String urlString) {	
 		HttpRequest request = null;
-		
 		try {
 			request = HttpRequest.newBuilder().uri(URI.create(urlString)).build();
 		}
 		catch (IllegalArgumentException ex) {
 			throw new IllegalArgumentException ("INVALID URL");
 		}
-		
 		return request;
 	}
 	
@@ -107,10 +94,9 @@ public final class AppUtils {
 		HttpResponse<String> response = null;
 		try {
 			response = client.send(request, BodyHandlers.ofString());
-			
-			System.out.println(response);
-			
+			//System.out.println(response);
 		}
+		// Handling 2 possible types of Exception: IOException & InterruptedException
 		catch (IOException e) {
 			throw new IOException("IO");
 		}
@@ -126,8 +112,72 @@ public final class AppUtils {
 		return br;
 	}
 	
-	// MAIN METHOD FOR parsing JSON to Java Object which will be added as a Point in Main function
-	private static List<SensorPoint> parseJson(URL url) {
+	/** 3 helper methods which parses JSON files, each with a different purpose **/
+	// Parse JSON file for No-Fly-Zone buildings
+	private static List<NoFlyZoneBuilding> parseGeoJsonBuildings(URL url) {
+		
+		BufferedReader br = null;
+		
+		//Create empty arraylist of NoFlyZoneBuildings
+		List<NoFlyZoneBuilding> buildings = new ArrayList<NoFlyZoneBuilding>();
+		
+		// Try GeoJSON parsing if time allows
+		try {
+			br = AppUtils.readFile(url);
+			
+			JsonObject jObject = new Gson().fromJson(br, JsonObject.class);
+						
+			JsonArray jArray = jObject.get("features").getAsJsonArray();
+			
+			for (int i = 0; i < 4; i++) {
+				JsonObject currentObject = jArray.get(i).getAsJsonObject();
+				System.out.println(currentObject);
+				
+				JsonObject properties = currentObject.get("properties").getAsJsonObject();
+				System.out.println(properties);
+				
+				String name = properties.get("name").getAsString();
+				
+				System.out.println(name);
+				
+				JsonObject geometry = currentObject.get("geometry").getAsJsonObject();
+				System.out.println(geometry);
+				
+				JsonArray array = geometry.get("coordinates").getAsJsonArray();
+				System.out.println(array);
+				
+				System.out.println(array.get(0).getAsJsonArray());
+				System.out.println(array.get(0).getAsJsonArray().size());
+				
+				List<Point> coordinates = new ArrayList<Point>();
+				
+				for (int j = 0; j < array.get(0).getAsJsonArray().size(); j++) {
+					
+					double lng = array.get(0).getAsJsonArray().get(j).getAsJsonArray().get(0).getAsDouble();
+					double lat = array.get(0).getAsJsonArray().get(j).getAsJsonArray().get(1).getAsDouble();
+					var point = Point.fromLngLat(lng, lat);
+					coordinates.add(point);
+					
+				}
+				
+				// Create new building
+				NoFlyZoneBuilding building = new NoFlyZoneBuilding(name, coordinates);
+				buildings.add(building);
+								
+			}
+			
+			return buildings;
+			
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return buildings;
+	}
+	
+	// MAIN METHOD FOR deserializing the air quality data into a list of Sensor Points
+	private static List<SensorPoint> parseJsonAirQualityData(URL url) {
 		
 		BufferedReader br = null;
 		
@@ -138,15 +188,14 @@ public final class AppUtils {
 		try {
 			
 			// BufferedReader should read the Air Quality Data JSON file					
-			
-			// = new BufferedReader(new FileReader("test-air-quality-data.json"));			
 			br = AppUtils.readFile(url);
 			
-			// Assume JSONObject has already been created from root
+			// JSONArray has already been created from root
 			JsonArray jArray = new Gson().fromJson(br, JsonArray.class);
 			
 			// Assume there will always be 33 points to be read
 			for (int i = 0; i < 33; i++) {
+				
 				// Obtain current location
 				JsonObject currentObject = jArray.get(i).getAsJsonObject();
 				
@@ -178,36 +227,8 @@ public final class AppUtils {
 		
 	}
     
-	public static double[] fetchSensorPointLocationCoords(String sensorPointLocation) throws MalformedURLException {
-
-		// First create HTTP client
-		var client = HttpClient.newHttpClient();
-		
-		// Then create URL String
-		String urlString = AppUtils.createURLString2(sensorPointLocation);
-		
-		// Create HTTPRequest
-		HttpRequest request = createHttpRequest(urlString);
-		
-		// Send HTTPResponse
-		HttpResponse<String> response = null;
-		try {
-			response = sendHttpResponse(client, request);
-			System.out.println(response.uri());
-			System.out.println(response.uri().toURL());
-		} 
-		catch (IOException | InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		double[] coordinates = AppUtils.parseJsonCoords(response.uri().toURL());
-		
-		return coordinates;
-		
-	}
-	
 	// Interested in obtaining coordinates from the SensorPoint's location
-	private static double[] parseJsonCoords(URL url) {
+	private static double[] parseJsonSensorPointLocation(URL url) {
 		// Assume coordinates array has length of 2
 		
 		BufferedReader br = null;
@@ -240,9 +261,95 @@ public final class AppUtils {
 		
 	}
 
+	// Main utility function for obtaining Sensor Point location coordinates
+	public static double[] fetchSensorPointLocationCoords(String sensorPointLocation) throws MalformedURLException {
+
+		// First create HTTP client
+		var client = HttpClient.newHttpClient();
+		
+		// Then create URL String
+		String urlString = AppUtils.createURLStringForSensorPointLocationDetails(sensorPointLocation);
+		
+		// Create HTTPRequest
+		HttpRequest request = createHttpRequest(urlString);
+		
+		// Send HTTPResponse
+		HttpResponse<String> response = null;
+		try {
+			response = sendHttpResponse(client, request);
+			System.out.println(response.uri());
+			System.out.println(response.uri().toURL());
+		} 
+		catch (IOException | InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		double[] coordinates = AppUtils.parseJsonSensorPointLocation(response.uri().toURL());
+		
+		return coordinates;
+		
+	}
+	
+	// Main utility function for obtaining a list of SensorPoints- to be called in main class
+	public static List<SensorPoint> fetchSensorPointData(String dayStr, String monthStr, String yearStr, String portStr) throws Exception {
+		
+		// First creates a HTTP Client- usually from web browser
+		var client = HttpClient.newHttpClient();
+		
+		// Then create URL String from given parameters
+		String urlString = AppUtils.createURLStringForSensorPointsAirQualityData(dayStr, monthStr, yearStr, portStr);
+		
+		// Create HTTPRequest
+		HttpRequest request = createHttpRequest(urlString);
+		
+		// Send HTTPResponse
+		HttpResponse<String> response = null;
+		try {
+			response = sendHttpResponse(client, request);
+			System.out.println(response.uri());
+			System.out.println(response.uri().toURL());
+		} 
+		catch (IOException | InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		List<SensorPoint> sensorPoints = parseJsonAirQualityData(response.uri().toURL());
+		
+		return sensorPoints;
+	}
+
+	// Main utility function for obtaining list of NoFlyZoneBuildings
+	public static List<NoFlyZoneBuilding> fetchBuildingCoordinates() throws Exception {
+		
+		// First create HTTP client
+		var client = HttpClient.newHttpClient();
+		
+		String urlString = AppUtils.createURLStringForBuildings();
+		
+		HttpRequest request = createHttpRequest(urlString);
+		
+		HttpResponse<String> response = null;
+		try {
+			response = sendHttpResponse(client, request);
+			System.out.println(response.uri());
+			System.out.println(response.uri().toURL());
+		}
+		catch (IOException | InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		List<NoFlyZoneBuilding> buildings = parseGeoJsonBuildings(response.uri().toURL());
+		
+		return buildings;
+		
+		
+	}
+	
 	// Main method- for debugging purposes ONLY
-	public static void main(String[] args) {
-		System.out.println(AppUtils.createURLString2("slips.mass.baking"));
+	public static void main(String[] args) throws Exception {
+		// Create URL String
+		System.out.println(AppUtils.fetchBuildingCoordinates());
+		
 	}
 	
 }
