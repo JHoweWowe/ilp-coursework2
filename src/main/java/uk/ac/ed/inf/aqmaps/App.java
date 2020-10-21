@@ -144,8 +144,8 @@ public class App {
     	String monthStr = args[1];
     	String yearStr = args[2];
     	
-    	String latitudeStr = args[3];
-    	String longitudeStr = args[4];
+    	double startingLatitude = Double.parseDouble(args[3]);
+    	double startingLongitude = Double.parseDouble(args[4]);
     	
     	String randomNumberSeedStr = args[5];
     	String portStr = args[6];
@@ -153,6 +153,11 @@ public class App {
     	// Obtains the points / buildings from Utility class
     	List<SensorPoint> points = AppUtils.fetchSensorPointData(dayStr, monthStr, yearStr, portStr);
     	List<NoFlyZoneBuilding> buildings = AppUtils.fetchBuildingCoordinates();
+    	
+    	// Instantiate drone's position
+    	Position startingPosition = new Position(startingLongitude, startingLatitude);
+    	Drone drone = new Drone(startingPosition, points);
+    	
     	
     	System.out.println(generateGeoJson(points,buildings));
     	
