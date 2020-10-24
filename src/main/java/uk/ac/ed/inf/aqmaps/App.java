@@ -11,6 +11,7 @@ import com.mapbox.geojson.Polygon;
 
 /**
  * This is the main application
+ * Helper function should certainly be called, and are usually from other classes
  *
  */
 public class App {
@@ -20,117 +21,10 @@ public class App {
     private static final Point gridPointSW = Point.fromLngLat(-3.192473, 55.942617);
     private static final Point gridPointSE = Point.fromLngLat(-3.184319, 55.942617);
     
-    /**
-     * Converts the air quality reading value into a RGB string for color
-     * @param readingValueStr - Sensor Point's air quality reading value
-     * @return String
-     */
-    public static String readingValueToRGBString(String readingValueStr) {
-    	
-    	var rgbString = "";
-    	
-    	// Check if reading value can be parsed as a double
-    	try {
-    		// Assumes if the battery level is below 10%, which results in either null or NaN values
-    		if ((readingValueStr.equals("null")) || (readingValueStr.equals("NaN"))) {
-    			rgbString = "#000000";
-    			return rgbString;
-    		}
-    		
-    		// Otherwise, convert the 
-    		double value = Double.parseDouble(readingValueStr);
-    		
-            if ((value >= 0) && (value < 32)) {
-                rgbString = "#00ff00";
-            }
-            else if ((value >= 32) && (value < 64)) {
-                rgbString = "#40ff00";
-            }
-            else if ((value >= 64) && (value < 96)) {
-                rgbString = "#80ff00";
-            }
-            else if ((value >= 96) && (value < 128)) {
-                rgbString = "#c0ff00";
-            }
-            else if ((value >= 128) && (value < 160)) {
-                rgbString = "#ffc000";
-            }
-            else if ((value >= 160) && (value < 192)) {
-                rgbString = "#ff8000";
-            }
-            else if ((value >= 192) && (value < 224)) {
-                rgbString = "#ff4000";
-            }
-            else if ((value >= 224) && (value < 256)) {
-                rgbString = "#ff0000";
-            }
-    	}
-    	catch (NumberFormatException e) {
-    		throw new NumberFormatException("Invalid number format");
-    	}
-    	// Assume if number is negative or greater than 255, then return nothing
-    	return rgbString;
-    }
-	
-    public static String readingValueMarkerSymbol(String readingValueStr) {
-    	
-    	var markerSymbol = "";
-    	
-    	try {
-    		if ((readingValueStr.equals("null")) || (readingValueStr.equals("NaN"))) {
-    			markerSymbol = "cross";
-    			return markerSymbol;
-    		}
-    		double value = Double.parseDouble(readingValueStr);
-    		if ((value >= 0) && (value < 128)) {
-    			markerSymbol = "lighthouse";
-    		}
-    		else if ((value >= 128) && value < 256) {
-    			markerSymbol = "danger";
-    		}
-    	}
-    	catch (NumberFormatException e) {
-    		markerSymbol = "";
-    	}
-    	
-    	return markerSymbol;
-    }
-    
-    // NOTE: There is no need to generate GeoJSON for buildings, but helps to visualize
-    public static String generateGeoJson(List<SensorPoint> sensorPoints, List<NoFlyZoneBuilding> buildings) {
-    	
-    	var features = new ArrayList<Feature>();
-    	
-    	for (SensorPoint sensorPoint : sensorPoints) {
-    		
-    		// For debugging
-    		System.out.println(sensorPoint.getLocation());
-    		System.out.println(sensorPoint.getLongitude() + " " + sensorPoint.getLatitude());
-    		System.out.println(readingValueToRGBString(sensorPoint.getSensorReading()));
-    		
-    		Point p = Point.fromLngLat(sensorPoint.getLongitude(), sensorPoint.getLatitude());
-    		var feature = Feature.fromGeometry(p);
-    		feature.addStringProperty("location", sensorPoint.getLocation());
-    		feature.addStringProperty("rgb-string", readingValueToRGBString(sensorPoint.getSensorReading()));
-            feature.addStringProperty("marker-color", readingValueToRGBString(sensorPoint.getSensorReading()));
-            feature.addStringProperty("marker-symbol", readingValueMarkerSymbol(sensorPoint.getSensorReading()));
-    		
-    		features.add(feature);
-    	}
-    	
-    	for (NoFlyZoneBuilding building : buildings) {
-    		var coordinates = building.getCoordinates();
-    		Polygon polygon = Polygon.fromLngLats(List.of(coordinates));
-    		var feature = Feature.fromGeometry(polygon);
-    		features.add(feature);
-    	}
-    	
-    	var featureCollection = FeatureCollection.fromFeatures(features);
-    	
-        var finalGeoJson = featureCollection.toJson();
-        
-        return finalGeoJson;
-
+    //TODO: From the drone's given travel path, and the featureCollection from Map,
+    //create a new GeoJson String
+    public static String generateDronePathGeoJSON(List<Position> path, FeatureCollection fc) {
+    	return "";
     }
     
     public static void main(String[] args) throws Exception {
@@ -158,8 +52,17 @@ public class App {
     	Position startingPosition = new Position(startingLongitude, startingLatitude);
     	Drone drone = new Drone(startingPosition, points);
     	
+    	// Measure distance from drone to any arbitrary SensorPoint- for example: first one which isn't close enough
+    	System.out.println(points.get(21).getLocation());
+    	System.out.println(drone.calculateDistance(points.get(21)));
     	
-    	System.out.println(generateGeoJson(points,buildings));
+    	System.out.println(points.get(21).getLocation());
+    	
+    	drone.setNextSensorPoint(points.get(21));
+    	drone.move();
+    	    	
+    	
+    	System.out.println(Map.generateMapGeoJson(points,buildings));
     	
     }
 }

@@ -38,7 +38,7 @@ import com.mapbox.geojson.Polygon;
 
 /**
  * Application Utility class which handles the back-end of the web application
- * especially includes parsing the JSON files and connect to HTTP Server respectively
+ * especially includes connect to HTTP Server respectively
  * 
  * Determine which methods should be determined private and public
  * Research more in detail and explain differences
@@ -211,7 +211,9 @@ public final class AppUtils {
 				double batteryPercentage = currentObject.get("battery").getAsDouble();
 				String reading = currentObject.get("reading").getAsString();
 				
-				SensorPoint sensorpoint = new SensorPoint(location,longitude,latitude,batteryPercentage,reading);
+				Position position = new Position(longitude, latitude);
+				
+				SensorPoint sensorpoint = new SensorPoint(location,position,batteryPercentage,reading);
 				sensorPointList.add(sensorpoint);
 			}		
 		}
