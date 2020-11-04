@@ -15,11 +15,6 @@ import com.mapbox.geojson.Polygon;
  *
  */
 public class App {
-	
-    private static final Point gridPointNW = Point.fromLngLat(-3.192473, 55.946233);
-    private static final Point gridPointNE = Point.fromLngLat(-3.184319, 55.946233);
-    private static final Point gridPointSW = Point.fromLngLat(-3.192473, 55.942617);
-    private static final Point gridPointSE = Point.fromLngLat(-3.184319, 55.942617);
     
     //TODO: From the drone's given travel path, and the featureCollection from Map,
     //create a new GeoJson String
@@ -67,8 +62,8 @@ public class App {
     	List<NoFlyZoneBuilding> buildings = AppUtils.fetchBuildingCoordinates();
     	
     	// Instantiate drone's position
-    	Position startingPosition = new Position(startingLongitude, startingLatitude);
-    	Drone drone = new Drone(startingPosition, points);
+    	var startingPosition = new Position(startingLongitude, startingLatitude);
+    	Drone drone = new Drone(startingPosition, points, buildings);
     	// Initialize drone's travel path with starting position
     	drone.addPositionForTravelPath(startingPosition);
     	
@@ -99,6 +94,6 @@ public class App {
     	System.out.println(finalFC);
     	    	
     	//System.out.println(Map.generateMapGeoJson(points,buildings));
-    	
+    	    	
     }
 }

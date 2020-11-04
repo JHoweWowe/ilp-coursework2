@@ -1,5 +1,11 @@
 package uk.ac.ed.inf.aqmaps;
 
+import java.util.List;
+
+import com.mapbox.geojson.Point;
+import com.mapbox.geojson.Polygon;
+import com.mapbox.turf.TurfJoins;
+
 // Position class which determines longitude and latitude for drones and sensor points in the map
 public class Position {
 	
@@ -22,6 +28,31 @@ public class Position {
 		return latitude;
 	}
 	
+	// Check if the drone is within confinement area
+	public boolean isWithinConfinementArea() {	    
+		if (((getLongitude() > -3.192473) && (getLongitude() < -3.184319)) && 
+		((getLatitude() > 55.942617) && (getLatitude() < 55.946233))) {
+			return true;
+		}
+		return false;
+	}
+	
+	// NOT IMPLEMENTED: Check if the drone's position IS IN ANY OF the NoFlyZoneBuildings
+	public boolean isWithinAnyFlyZoneBuilding(List<NoFlyZoneBuilding> buildings) {
+		for (NoFlyZoneBuilding building : buildings) {
+			var coordinates = building.getCoordinates();
+			var buildingPolygon = Polygon.fromLngLats(List.of(coordinates));
+			var positionPoint = Point.fromLngLat(getLongitude(), getLatitude());
+			
+			// If the Point representation of the position
+			if (TurfJoins.inside(positionPoint, buildingPolygon)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	// From direction degrees given, calculate drone's new position
 	public Position nextPosition(Direction direction) {
 		
@@ -42,7 +73,9 @@ public class Position {
 		
 		return newPosition;
 		
-	}	
+	}
+	
+	
 	
 	// For debugging purposes
 	public static void main(String[] args) {
