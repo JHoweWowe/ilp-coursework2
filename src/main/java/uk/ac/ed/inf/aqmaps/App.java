@@ -9,6 +9,8 @@ import com.mapbox.geojson.LineString;
 import com.mapbox.geojson.Point;
 import com.mapbox.geojson.Polygon;
 
+import java.io.*;
+
 /**
  * This is the main application
  * Helper function should certainly be called, and are usually from other classes
@@ -94,6 +96,22 @@ public class App {
     	System.out.println(finalFC);
     	    	
     	//System.out.println(Map.generateMapGeoJson(points,buildings));
+    	
+    	/** Write to stream according to coursework section 2.4 **/
+    	
+    	// After printing out the final collection in JSON...create the flight path files
+    	String flightPathTextFile = "flightpath-" + dayStr + "-" + monthStr + "-" + yearStr + ".txt";
+    	PrintWriter output = new PrintWriter(flightPathTextFile);
+    	for (int i = 0; i < drone.getMovements().size(); i++) {
+    		output.println(drone.getMovements().get(i));
+    	}
+    	output.close();
+    	
+    	// Create geojson readings for particular day, month, year
+    	String mapGeoJsonReadingsTextFile = "readings-" + dayStr + "-" + monthStr + "-" + yearStr + ".geojson";
+    	PrintWriter output2 = new PrintWriter(mapGeoJsonReadingsTextFile);
+    	output2.println(finalFC);
+    	output2.close();
     	    	
     }
 }

@@ -27,6 +27,12 @@ public class Drone {
 	// Obtains list of NoFlyZoneBuildings to avoid
 	private List<NoFlyZoneBuilding> buildingsToAvoid;
 	
+	// String text representation for movements- used for FileCreator class to generate text files
+	private List<String> movements;
+	
+	// 
+	private int lastBestDirectionAngle;
+	
 	private final double droneMovementDegrees = 0.0003;
 	private int numberOfMoves = 150;
 	
@@ -39,9 +45,12 @@ public class Drone {
 		// Drone's initial travel path should be completely empty
 		this.travelledPath = new ArrayList<Position>();
 		this.buildingsToAvoid = buildingsToAvoid;
+		this.movements = new ArrayList<String>();
+		
+		this.lastBestDirectionAngle = 0;
 	}
 		
-	// MAIN METHOD: Flight Path- Greedy Algorithm [NOT EFFICIENT- WILL NEED TO IMPROVE IT]
+	// MAIN METHOD: Flight Path- Greedy Algorithm [Somewhat efficient]
 	public void generateGreedyFlightPath() {
 		while (numberOfMoves > 0) {
 			if (!(notVisited.isEmpty())) {
@@ -50,8 +59,21 @@ public class Drone {
 				var sensorPoint = findClosestNotVisitedSensorPoint(dronePosition);
 				setNextSensorPoint(sensorPoint);
 				if (!(isVisited(sensorPoint))) {
+					// Move towards that sensor point which is not visited and take reading if applicable
 					move();
-					takeReading(dronePosition);
+					
+					var newDronePosition = getPosition();
+					var lastBestDirectionAngle = getAngle();
+
+					String pointStr = takeReading(newDronePosition);
+					
+					// Generates the movement String text- could be moved outside of function
+					int moveNumber = getMovements().size()+1;					
+					String movement = createStringMovement(moveNumber, dronePosition, lastBestDirectionAngle, 
+							newDronePosition, pointStr);
+					// Adds to the Movements function
+					getMovements().add(movement);
+					
 					numberOfMoves--;
 				}
 			}
@@ -81,10 +103,8 @@ public class Drone {
 	}
 	
 	// This would be useful for checking if the possible LineString goes through the Polygons
-	// Test function: Check if any intersecting lines go through-- add parameters as necessary
-	
-	// Assume number of buildings is 4
-	
+	// Test function: Check if any intersecting lines go through-- add parameters as necessary	
+	// Assume number of buildings is 4	
 	
 	public Line2D.Double createLine2D(Position p1, Position p2) {
 		var point1 = new Point2D.Double(p1.getLongitude(), p1.getLatitude());
@@ -150,11 +170,17 @@ public class Drone {
 	/** Drone methods- includes movement and take reading of sensor point **/
 	// Searches and determines which direction should the drone fly in 
 	// FOR each move AFTER knowing which sensor point to go to
+	
+	// Returns a String representation of the movement while doing the movement itself
 	public void move() {
-		System.out.println(getPosition().getLongitude());
-		System.out.println(getPosition().getLatitude());
 		// Obtains list of NoFlyZoneBuildings
 		var buildings = getNoFlyZoneBuildings();
+		
+		// Obtains drone current position
+		var droneCurrentPosition = getPosition();
+		
+		// Gets the sensorPoint that the drone should move towards to and take reading if applicable
+		var nextSensorPoint = getNextSensorPoint();
 		
 		// Checks for each viable direction
 		double minDistance = Integer.MAX_VALUE;
@@ -162,9 +188,7 @@ public class Drone {
 		for (int directionAngle = 0; directionAngle < 360; directionAngle += 10) {
 			
 			// Check possible drone position
-			var droneCurrentPosition = getPosition();
 			var droneNextPosition = droneCurrentPosition.nextPosition(new Direction(directionAngle));
-			var nextSensorPoint = getNextSensorPoint();
 			double distance = calculateDistance(droneNextPosition, nextSensorPoint);
 			
 			var lineStr = createLine2D(droneCurrentPosition, droneNextPosition);
@@ -184,18 +208,20 @@ public class Drone {
 				if (!((droneNextPosition.isWithinAnyFlyZoneBuilding(buildings)))) {
 					
 					// Line intersects function
-					if (!((intersects(building1, lineStr)) || (intersects(building2,lineStr)))) {
-						
-						if (!((intersects(building3, lineStr)) || (intersects(building4,lineStr)))) {
-							
-							// Finally check for the minimal distance
-							if (distance < minDistance) {
-								minDistance = distance;
-								bestDirectionAngle = directionAngle;
+					if (!(intersects(building1, lineStr))) {
+						if (!(intersects(building2, lineStr))) {
+							if (!(intersects(building3, lineStr))) {
+								if (!(intersects(building4, lineStr))) {
+									
+									// Finally check for the minimal distance
+									if (distance < minDistance) {
+										minDistance = distance;
+										bestDirectionAngle = directionAngle;
+									}
+									
+								}
 							}
-							
 						}
-						
 					}
 						
 				}
@@ -208,12 +234,46 @@ public class Drone {
 		// Set the drone's new location
 		setPosition(newPosition);
 		
+		// Test function- 
+		setAngle(bestDirectionAngle);
+				
 		// Debugging purposes only
 		System.out.println(getPosition().getLongitude());
 		System.out.println(getPosition().getLatitude());
-		
 		System.out.println("Best Direction Angle: " + bestDirectionAngle);
 		System.out.println("Min Distance: " + minDistance);
+						
+	}
+	
+	// Take reading after the move
+	public String takeReading(Position dronePosition) {
+		//TODO: ONLY should add the SensorPoint if the drone's position is within 0.0002,
+		// and then you can add respective SensorPoint as visited and remove it from notVisited
+		String sensorPointStr = "null";
+		
+		double distance = calculateDistance(dronePosition, nextSensorPoint);
+		if (distance < 0.0002) {
+			visited.add(nextSensorPoint);
+			notVisited.remove(nextSensorPoint);
+			sensorPointStr = nextSensorPoint.getLocation();
+		}
+		return sensorPointStr;
+	}
+	
+	// Helper function which creates a String representation of the drone movement
+	public String createStringMovement(int moveNumber, Position droneCurrentPosition, int bestDirectionAngle, 
+			Position droneNewPosition, String sensorPointStrFormat) {
+		
+		// Create String text for each movement
+		String movement = String.format("%s,%s,%s,%s,%s,%s,%s",
+				Integer.toString(moveNumber),
+				Double.toString(droneCurrentPosition.getLongitude()),
+				Double.toString(droneCurrentPosition.getLatitude()),
+				Integer.toString(bestDirectionAngle),
+				Double.toString(droneNewPosition.getLongitude()),
+				Double.toString(droneNewPosition.getLatitude()),
+				sensorPointStrFormat);
+		return movement;
 	}
 	
 	public boolean isVisited(SensorPoint point) {
@@ -223,16 +283,6 @@ public class Drone {
 			return true;
 		}
 		return false;
-	}
-	
-	//TODO: ONLY should add the SensorPoint if the drone's position is within 0.0002,
-	// and then you can add respective SensorPoint as visited and remove it from notVisited
-	public void takeReading(Position dronePosition) {
-		double distance = calculateDistance(dronePosition, nextSensorPoint);
-		if (distance < 0.0002) {
-			visited.add(nextSensorPoint);
-			notVisited.remove(nextSensorPoint);
-		}
 	}
 	
 	// Helper function which calculates distance with respect to the drone's current position 
@@ -267,6 +317,12 @@ public class Drone {
 	public List<NoFlyZoneBuilding> getNoFlyZoneBuildings() {
 		return buildingsToAvoid;
 	}
+	public List<String> getMovements() {
+		return movements;
+	}
+	public int getAngle() {
+		return lastBestDirectionAngle;
+	}
 	
 	/** SETTER METHODS **/
 	// Set new position
@@ -282,6 +338,10 @@ public class Drone {
 	}
 	public void addPositionForTravelPath(Position newPosition) {
 		travelledPath.add(newPosition);
+	}
+	
+	public void setAngle(int angle) {
+		this.lastBestDirectionAngle = angle;
 	}
 	
 	// For debugging purposes ONLY
