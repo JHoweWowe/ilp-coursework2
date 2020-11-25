@@ -75,16 +75,12 @@ public class Position {
 		
 	}
 	
-	
-	
 	// For debugging purposes
 	public static void main(String[] args) {
-		
-		Position position = new Position(-3.1878,55.9444);
-		Position newPosition = position.nextPosition(new Direction(180));
-		System.out.println(newPosition.getLongitude());
-		System.out.println(newPosition.getLatitude());
-		
+		//var position = new Position(-3.1878,55.9444);
+		//var newPosition = position.nextPosition(new Direction(180));
+		//System.out.println(newPosition.getLongitude());
+		//System.out.println(newPosition.getLatitude());
 	}
 
 }

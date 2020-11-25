@@ -58,7 +58,7 @@ public abstract class Map {
             }
     	}
     	catch (NumberFormatException e) {
-    		throw new NumberFormatException("Invalid number format");
+    		System.err.println("Invalid number format!");
     	}
     	// Assume if number is negative or greater than 255, then return nothing
     	return rgbString;
@@ -112,7 +112,7 @@ public abstract class Map {
     	
     	for (NoFlyZoneBuilding building : buildings) {
     		var coordinates = building.getCoordinates();
-    		Polygon polygon = Polygon.fromLngLats(List.of(coordinates));
+    		var polygon = Polygon.fromLngLats(List.of(coordinates));
     		var feature = Feature.fromGeometry(polygon);
     		features.add(feature);
     	}

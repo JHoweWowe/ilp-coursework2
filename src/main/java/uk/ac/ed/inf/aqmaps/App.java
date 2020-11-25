@@ -60,11 +60,11 @@ public class App {
     	var randomNumberSeedStr = args[5];
     	var portStr = args[6];
     	
-    	// Obtains the points / buildings from Utility class
+    	// Obtains the points / buildings from AppUtils class
     	List<SensorPoint> sensorPoints = AppUtils.fetchSensorPointData(dayStr, monthStr, yearStr, portStr);
     	List<NoFlyZoneBuilding> buildings = AppUtils.fetchBuildingCoordinates();
     	
-    	// Instantiate drone's position
+    	// Instantiate drone's position with initial position
     	var startingPosition = new Position(startingLongitude, startingLatitude);
     	Drone drone = new Drone(startingPosition, sensorPoints, buildings);
     	
@@ -84,7 +84,6 @@ public class App {
     	var finalFC = generateDronePathGeoJSON(dronePath, FeatureCollection.fromJson(mapFC));
     	
     	System.out.println(finalFC);
-    	    	  
     	
     	/** Write to stream according to coursework section 2.4 **/
     	// Create flight path text files

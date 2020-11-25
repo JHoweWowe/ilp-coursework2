@@ -33,7 +33,6 @@ public class Drone {
 	// 
 	private int lastBestDirectionAngle;
 	
-	private final double droneMovementDegrees = 0.0003;
 	private int numberOfMoves = 150;
 	
 	// When the drone is instantiated, drone should not have visited any points so far
@@ -146,46 +145,34 @@ public class Drone {
 	
 	// Algorithm implemented with following pseudocode from StackOverFLow
 	public boolean intersects(Path2D.Double path, Line2D line) {
-	    double x1 = -1 ,y1 = -1 , x2= -1, y2 = -1;
-	    for (PathIterator pi = path.getPathIterator(null); !pi.isDone(); pi.next()) 
-	    {
-	        double[] coordinates = new double[6];
-	        switch (pi.currentSegment(coordinates))
-	        {
-	        case PathIterator.SEG_MOVETO:
-	        case PathIterator.SEG_LINETO:
-	        {
-	            if(x1 == -1 && y1 == -1 )
-	            {
-	                x1= coordinates[0];
-	                y1= coordinates[1];
-	                break;
-	            }               
-	            if(x2 == -1 && y2 == -1)
-	            {
-	                x2= coordinates[0];             
-	                y2= coordinates[1];
-	                break;
-	            }
-	            break;
-	        }
-	        }
-	        if(x1 != -1 && y1 != -1 && x2 != -1 && y2 != -1)
-	        {
-	            Line2D segment = new Line2D.Double(x1, y1, x2, y2);
-	            if (segment.intersectsLine(line)) 
-	            {
-	                return true;
-	            }
-	            x1 = -1;
-	            y1 = -1;
-	            x2 = -1;
-	            y2 = -1;
-	        }
-	    }
-	    return false;
+		Point2D.Double start = null;
+		Point2D.Double point1 = null;
+		Point2D.Double point2 = null;
+		for (PathIterator pi = path.getPathIterator(null); !pi.isDone(); pi.next()) {
+			double[] coordinates = new double[6];
+		    switch (pi.currentSegment(coordinates)) {
+		    case PathIterator.SEG_MOVETO:
+		      point2 = new Point2D.Double(coordinates[0], coordinates[1]);
+		      point1 = null;
+		      start = (Point2D.Double) point2.clone();
+		      break;
+		    case PathIterator.SEG_LINETO:
+		      point1 = point2;
+		      point2 = new Point2D.Double(coordinates[0], coordinates[1]);
+		      break;
+		    case PathIterator.SEG_CLOSE:
+		      point1 = point2;
+		      point2 = start;
+		      break;
+		    }
+		    if (point1 != null) {
+		      Line2D segment = new Line2D.Double(point1, point2);
+		      if (segment.intersectsLine(line))
+		        return true;
+		    }
+		  }
+		return false;
 	} 
-
 	
 	/** Drone methods- includes movement and take reading of sensor point **/
 	// Searches and determines which direction should the drone fly in 
@@ -341,6 +328,9 @@ public class Drone {
 		
 		// Test function- 
 		setAngle(bestDirectionAngle);
+		
+		System.out.println("Best Direction Angle: " + bestDirectionAngle);
+		System.out.println("Min Distance: " + minDistance);
 		
 		double distance = calculateDistance2(newPosition, originalPosition);
 		if (distance < 0.0002) {
