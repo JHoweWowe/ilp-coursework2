@@ -24,13 +24,13 @@ public class Drone {
 	private List<SensorPoint> notVisited;
 	private List<NoFlyZoneBuilding> buildingsToAvoid;
 	
-	// String text representation for movements- used for FileCreator class to generate text files
+	// String text representation for movements- used to generate text files in App.java
 	private List<String> movements;
 	
 	// Boolean indicating if drone should return to original location- only activated after obtaining all sensor points
 	private boolean sensoredAllPointsAndNearOriginalLocation;
 		
-	// 
+	// One of the attributes required to record every movement
 	private int lastBestDirectionAngle;
 	
 	private int numberOfMoves = 150;
@@ -112,7 +112,8 @@ public class Drone {
 		// Search for other sensorPoints if applicable
 		for (int i = 1; i < notVisitedSensorPoints.size(); i++) {
 			var sensorPoint = notVisitedSensorPoints.get(i);
-			var distance = calculateDistance(dronePosition, sensorPoint);
+			var sensorPointPosition = sensorPoint.getPosition();
+			var distance = calculateDistance(dronePosition, sensorPointPosition);
 			if (distance < minDistance) {
 				minDistance = distance;
 				closestSensorPoint = sensorPoint;
@@ -172,7 +173,30 @@ public class Drone {
 		    }
 		  }
 		return false;
-	} 
+	}
+	
+	// Checks if drone position is within confinement area and if it intersects any of buildings
+	public boolean meetsAllRequiredConstraints(Position droneNextPosition, Line2D.Double line, 
+			Path2D.Double building1, Path2D.Double building2, Path2D.Double building3, Path2D.Double building4) {
+		var meetsRequirements = false;
+		
+		// First checks if drone's next anticipated position is within confinement area
+		if (droneNextPosition.isWithinConfinementArea()) {
+			// Checks if anticipated drone paths intersect any of buildings
+			if (!(intersects(building1, line))) {
+				if (!(intersects(building2, line))) {
+					if (!(intersects(building3, line))) {
+						if (!(intersects(building4, line))) {
+							meetsRequirements = true;
+						}
+					}
+				}
+			}
+		}
+		
+		return meetsRequirements;
+		
+	}
 	
 	/** Drone methods- includes movement and take reading of sensor point **/
 	// Searches and determines which direction should the drone fly in 
@@ -189,6 +213,12 @@ public class Drone {
 		// Gets the sensorPoint that the drone should move towards to and take reading if applicable
 		var nextSensorPoint = getNextSensorPoint();
 		
+		// Manually create the boundaries for the buildings using Path2D!
+		var building1 = createPath2D(buildings.get(0));
+		var building2 = createPath2D(buildings.get(1));
+		var building3 = createPath2D(buildings.get(2));
+		var building4 = createPath2D(buildings.get(3));
+		
 		// Checks for each viable direction
 		double minDistance = Integer.MAX_VALUE;
 		int bestDirectionAngle = 0;
@@ -196,43 +226,16 @@ public class Drone {
 			
 			// Check possible drone position
 			var droneNextPosition = droneCurrentPosition.nextPosition(new Direction(directionAngle));
-			double distance = calculateDistance(droneNextPosition, nextSensorPoint);
+			double distance = calculateDistance(droneNextPosition, nextSensorPoint.getPosition());
 			
 			var lineStr = createLine2D(droneCurrentPosition, droneNextPosition);
-			
-			// Manually create the 2D paths for the buildings
-			var building1 = createPath2D(buildings.get(0));
-			var building2 = createPath2D(buildings.get(1));
-			var building3 = createPath2D(buildings.get(2));
-			var building4 = createPath2D(buildings.get(3));
-									
-			// TODO: Also check the boundaries for movement..it ultimately determines whether
-			// it can be assigned
-			// First checks if drone's next anticipated position is within confinement area
-			if (droneNextPosition.isWithinConfinementArea()) {
-				
-				// Also checks if the drone next position is NOT in any of the Buildings
-				if (!((droneNextPosition.isWithinAnyFlyZoneBuilding(buildings)))) {
-					
-					// Line intersects function
-					if (!(intersects(building1, lineStr))) {
-						if (!(intersects(building2, lineStr))) {
-							if (!(intersects(building3, lineStr))) {
-								if (!(intersects(building4, lineStr))) {
-									
-									// Finally check for the minimal distance
-									if (distance < minDistance) {
-										minDistance = distance;
-										bestDirectionAngle = directionAngle;
-									}
-									
-								}
-							}
-						}
-					}
-						
+												
+			if (meetsAllRequiredConstraints(droneNextPosition, lineStr, building1, building2, building3, building4)) {
+				// Finally check for the minimal distance
+				if (distance < minDistance) {
+					minDistance = distance;
+					bestDirectionAngle = directionAngle;
 				}
-				
 			}
 
 		}
@@ -258,7 +261,7 @@ public class Drone {
 		// and then you can add respective SensorPoint as visited and remove it from notVisited
 		String sensorPointStr = "null";
 		
-		double distance = calculateDistance(dronePosition, nextSensorPoint);
+		double distance = calculateDistance(dronePosition, nextSensorPoint.getPosition());
 		if (distance < 0.0002) {
 			visited.add(nextSensorPoint);
 			notVisited.remove(nextSensorPoint);
@@ -274,6 +277,13 @@ public class Drone {
 		var droneCurrentPosition = getPosition();
 		var originalPosition = getTravelledPath().get(0);
 		
+		// Manually create the 2D paths for the buildings
+		var building1 = createPath2D(buildings.get(0));
+		var building2 = createPath2D(buildings.get(1));
+		var building3 = createPath2D(buildings.get(2));
+		var building4 = createPath2D(buildings.get(3));
+
+		
 		// Checks for each viable direction
 		double minDistance = Integer.MAX_VALUE;
 		int bestDirectionAngle = 0;
@@ -281,43 +291,16 @@ public class Drone {
 			
 			// Check possible drone position
 			var droneNextPosition = droneCurrentPosition.nextPosition(new Direction(directionAngle));
-			double distance = calculateDistance2(droneNextPosition, originalPosition);
+			double distance = calculateDistance(droneNextPosition, originalPosition);
 			
 			var lineStr = createLine2D(droneCurrentPosition, droneNextPosition);
-			
-			// Manually create the 2D paths for the buildings
-			var building1 = createPath2D(buildings.get(0));
-			var building2 = createPath2D(buildings.get(1));
-			var building3 = createPath2D(buildings.get(2));
-			var building4 = createPath2D(buildings.get(3));
-									
-			// TODO: Also check the boundaries for movement..it ultimately determines whether
-			// it can be assigned
-			// First checks if drone's next anticipated position is within confinement area
-			if (droneNextPosition.isWithinConfinementArea()) {
-				
-				// Also checks if the drone next position is NOT in any of the Buildings
-				if (!((droneNextPosition.isWithinAnyFlyZoneBuilding(buildings)))) {
-					
-					// Line intersects function
-					if (!(intersects(building1, lineStr))) {
-						if (!(intersects(building2, lineStr))) {
-							if (!(intersects(building3, lineStr))) {
-								if (!(intersects(building4, lineStr))) {
-									
-									// Finally check for the minimal distance
-									if (distance < minDistance) {
-										minDistance = distance;
-										bestDirectionAngle = directionAngle;
-									}
-									
-								}
-							}
-						}
-					}
-						
+												
+			if (meetsAllRequiredConstraints(droneNextPosition, lineStr, building1, building2, building3, building4)) {
+				// Finally check for the minimal distance
+				if (distance < minDistance) {
+					minDistance = distance;
+					bestDirectionAngle = directionAngle;
 				}
-				
 			}
 
 		}
@@ -332,7 +315,10 @@ public class Drone {
 		System.out.println("Best Direction Angle: " + bestDirectionAngle);
 		System.out.println("Min Distance: " + minDistance);
 		
-		double distance = calculateDistance2(newPosition, originalPosition);
+		//var originalPosition = getTravelledPath().get(0);
+		//var newPosition = position.nextPosition(new Direction(getAngle()());
+		
+		double distance = calculateDistance(newPosition, originalPosition);
 		if (distance < 0.0002) {
 			setReturned();
 		}
@@ -365,19 +351,9 @@ public class Drone {
 		return false;
 	}
 	
-	// Helper function which calculates distance with respect to the drone's current position 
-	// and any arbitrary sensor point position
-	public double calculateDistance(Position dronePosition, SensorPoint point) {
-		double x1 = dronePosition.getLongitude();
-		double x2 = point.getPosition().getLongitude();
-		double y1 = dronePosition.getLatitude();
-		double y2 = point.getPosition().getLatitude();
-		double a = Math.pow(x1-x2, 2);
-		double b = Math.pow(y1-y2, 2);
-		return Math.sqrt(a+b);
-	}
-	
-	public double calculateDistance2(Position currentPosition, Position originalPosition) {
+	// Method calculates distance from currentPosition to originalPosition
+	// Can also calculate distance from drone's position to the sensorPoint's position
+	public double calculateDistance(Position currentPosition, Position originalPosition) {
 		double x1 = currentPosition.getLongitude();
 		double x2 = originalPosition.getLongitude();
 		double y1 = currentPosition.getLatitude();
@@ -446,5 +422,4 @@ public class Drone {
 		
 	}
 	
-
 }
