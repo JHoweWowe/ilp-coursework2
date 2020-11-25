@@ -1,5 +1,9 @@
 package uk.ac.ed.inf.aqmaps;
 
+import java.awt.geom.Line2D;
+import java.awt.geom.Path2D;
+import java.awt.geom.PathIterator;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +13,9 @@ import com.mapbox.geojson.Point;
 import com.mapbox.geojson.Polygon;
 
 // This class is responsible for generating the GeoJSON map and applying its helper methods
+// Also responsible for creating the visuals of the drone flight path and boundaries of NoFlyZone buildings
 
-public abstract class Map {
+public class Map {
 	
     /**
      * Converts the air quality reading value into a RGB string for color
@@ -88,7 +93,6 @@ public abstract class Map {
     	return markerSymbol;
     }
     
-    // NOTE: There is no need to generate GeoJSON for buildings, but helps to visualize
     public static String generateMapGeoJson(List<SensorPoint> sensorPoints, List<NoFlyZoneBuilding> buildings) {
     	
     	var features = new ArrayList<Feature>();
@@ -110,6 +114,7 @@ public abstract class Map {
     		features.add(feature);
     	}
     	
+    	// NOTE: Useful for visualization purposes- not intended to be displayed in GeoJSON output
     	for (NoFlyZoneBuilding building : buildings) {
     		var coordinates = building.getCoordinates();
     		var polygon = Polygon.fromLngLats(List.of(coordinates));
@@ -125,4 +130,56 @@ public abstract class Map {
 
     }
 
+	// This would be useful for checking if the drone's anticipated path would intersect any buildings
+	// Assume number of buildings is 4	
+	
+	public static Line2D.Double createLine2D(Position p1, Position p2) {
+		var point1 = new Point2D.Double(p1.getLongitude(), p1.getLatitude());
+		var point2 = new Point2D.Double(p2.getLongitude(), p2.getLatitude());
+		var line = new Line2D.Double(point1, point2);
+		return line;
+	}
+	
+	public static Path2D.Double createPath2D(NoFlyZoneBuilding building) {
+		var path = new Path2D.Double();
+		var coordinates = building.getCoordinates();
+		path.moveTo(coordinates.get(0).longitude(), coordinates.get(0).latitude());
+		for (int i = 1; i < coordinates.size(); i++) {
+			path.lineTo(coordinates.get(i).longitude(), coordinates.get(i).latitude());
+		}
+		path.closePath();
+		return path;
+	}
+	
+	// Algorithm implemented with following pseudocode from StackOverFlow- reference included in report
+	public static boolean intersects(Path2D.Double path, Line2D line) {
+		Point2D.Double start = null;
+		Point2D.Double point1 = null;
+		Point2D.Double point2 = null;
+		for (PathIterator pi = path.getPathIterator(null); !pi.isDone(); pi.next()) {
+			double[] coordinates = new double[6];
+		    switch (pi.currentSegment(coordinates)) {
+		    case PathIterator.SEG_MOVETO:
+		      point2 = new Point2D.Double(coordinates[0], coordinates[1]);
+		      point1 = null;
+		      start = (Point2D.Double) point2.clone();
+		      break;
+		    case PathIterator.SEG_LINETO:
+		      point1 = point2;
+		      point2 = new Point2D.Double(coordinates[0], coordinates[1]);
+		      break;
+		    case PathIterator.SEG_CLOSE:
+		      point1 = point2;
+		      point2 = start;
+		      break;
+		    }
+		    if (point1 != null) {
+		      Line2D segment = new Line2D.Double(point1, point2);
+		      if (segment.intersectsLine(line))
+		        return true;
+		    }
+		  }
+		return false;
+	}
+ 
 }

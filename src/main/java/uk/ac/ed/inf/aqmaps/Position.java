@@ -19,37 +19,12 @@ public class Position {
 		this.latitude = latitude;
 	}
 	
-	/** Getter and setter methods **/
-	public double getLongitude() {
-		return longitude;
-	}
-	
-	public double getLatitude() {
-		return latitude;
-	}
-	
 	// Check if the drone is within confinement area
 	public boolean isWithinConfinementArea() {	    
 		if (((getLongitude() > -3.192473) && (getLongitude() < -3.184319)) && 
 		((getLatitude() > 55.942617) && (getLatitude() < 55.946233))) {
 			return true;
 		}
-		return false;
-	}
-	
-	// NOT IMPLEMENTED: Check if the drone's position IS IN ANY OF the NoFlyZoneBuildings
-	public boolean isWithinAnyFlyZoneBuilding(List<NoFlyZoneBuilding> buildings) {
-		for (NoFlyZoneBuilding building : buildings) {
-			var coordinates = building.getCoordinates();
-			var buildingPolygon = Polygon.fromLngLats(List.of(coordinates));
-			var positionPoint = Point.fromLngLat(getLongitude(), getLatitude());
-			
-			// If the Point representation of the position
-			if (TurfJoins.inside(positionPoint, buildingPolygon)) {
-				return true;
-			}
-		}
-		
 		return false;
 	}
 	
@@ -73,6 +48,15 @@ public class Position {
 		
 		return newPosition;
 		
+	}
+	
+	// Getter methods
+	public double getLongitude() {
+		return longitude;
+	}
+	
+	public double getLatitude() {
+		return latitude;
 	}
 	
 	// For debugging purposes

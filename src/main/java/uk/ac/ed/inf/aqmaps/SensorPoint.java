@@ -16,7 +16,6 @@ public class SensorPoint {
 	}
 	
 	// Getter methods
-	
 	public String getLocation() {
 		return location;
 	}

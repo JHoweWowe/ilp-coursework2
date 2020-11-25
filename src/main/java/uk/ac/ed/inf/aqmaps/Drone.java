@@ -121,60 +121,7 @@ public class Drone {
 		}
 		return closestSensorPoint;
 	}
-	
-	// This would be useful for checking if the possible LineString goes through the Polygons
-	// Test function: Check if any intersecting lines go through-- add parameters as necessary	
-	// Assume number of buildings is 4	
-	
-	public Line2D.Double createLine2D(Position p1, Position p2) {
-		var point1 = new Point2D.Double(p1.getLongitude(), p1.getLatitude());
-		var point2 = new Point2D.Double(p2.getLongitude(), p2.getLatitude());
-		var line = new Line2D.Double(point1, point2);
-		return line;
-	}
-	
-	public Path2D.Double createPath2D(NoFlyZoneBuilding building) {
-		var path = new Path2D.Double();
-		var coordinates = building.getCoordinates();
-		path.moveTo(coordinates.get(0).longitude(), coordinates.get(0).latitude());
-		for (int i = 1; i < coordinates.size(); i++) {
-			path.lineTo(coordinates.get(i).longitude(), coordinates.get(i).latitude());
-		}
-		path.closePath();
-		return path;
-	}
-	
-	// Algorithm implemented with following pseudocode from StackOverFLow
-	public boolean intersects(Path2D.Double path, Line2D line) {
-		Point2D.Double start = null;
-		Point2D.Double point1 = null;
-		Point2D.Double point2 = null;
-		for (PathIterator pi = path.getPathIterator(null); !pi.isDone(); pi.next()) {
-			double[] coordinates = new double[6];
-		    switch (pi.currentSegment(coordinates)) {
-		    case PathIterator.SEG_MOVETO:
-		      point2 = new Point2D.Double(coordinates[0], coordinates[1]);
-		      point1 = null;
-		      start = (Point2D.Double) point2.clone();
-		      break;
-		    case PathIterator.SEG_LINETO:
-		      point1 = point2;
-		      point2 = new Point2D.Double(coordinates[0], coordinates[1]);
-		      break;
-		    case PathIterator.SEG_CLOSE:
-		      point1 = point2;
-		      point2 = start;
-		      break;
-		    }
-		    if (point1 != null) {
-		      Line2D segment = new Line2D.Double(point1, point2);
-		      if (segment.intersectsLine(line))
-		        return true;
-		    }
-		  }
-		return false;
-	}
-	
+		
 	// Checks if drone position is within confinement area and if it intersects any of buildings
 	public boolean meetsAllRequiredConstraints(Position droneNextPosition, Line2D.Double line, 
 			Path2D.Double building1, Path2D.Double building2, Path2D.Double building3, Path2D.Double building4) {
@@ -183,13 +130,9 @@ public class Drone {
 		// First checks if drone's next anticipated position is within confinement area
 		if (droneNextPosition.isWithinConfinementArea()) {
 			// Checks if anticipated drone paths intersect any of buildings
-			if (!(intersects(building1, line))) {
-				if (!(intersects(building2, line))) {
-					if (!(intersects(building3, line))) {
-						if (!(intersects(building4, line))) {
-							meetsRequirements = true;
-						}
-					}
+			if ((!(Map.intersects(building1, line))) && (!(Map.intersects(building2, line)))) {
+				if ((!(Map.intersects(building3, line))) && (!(Map.intersects(building4, line)))) {
+					meetsRequirements = true;
 				}
 			}
 		}
@@ -214,10 +157,10 @@ public class Drone {
 		var nextSensorPoint = getNextSensorPoint();
 		
 		// Manually create the boundaries for the buildings using Path2D!
-		var building1 = createPath2D(buildings.get(0));
-		var building2 = createPath2D(buildings.get(1));
-		var building3 = createPath2D(buildings.get(2));
-		var building4 = createPath2D(buildings.get(3));
+		var building1 = Map.createPath2D(buildings.get(0));
+		var building2 = Map.createPath2D(buildings.get(1));
+		var building3 = Map.createPath2D(buildings.get(2));
+		var building4 = Map.createPath2D(buildings.get(3));
 		
 		// Checks for each viable direction
 		double minDistance = Integer.MAX_VALUE;
@@ -228,7 +171,7 @@ public class Drone {
 			var droneNextPosition = droneCurrentPosition.nextPosition(new Direction(directionAngle));
 			double distance = calculateDistance(droneNextPosition, nextSensorPoint.getPosition());
 			
-			var lineStr = createLine2D(droneCurrentPosition, droneNextPosition);
+			var lineStr = Map.createLine2D(droneCurrentPosition, droneNextPosition);
 												
 			if (meetsAllRequiredConstraints(droneNextPosition, lineStr, building1, building2, building3, building4)) {
 				// Finally check for the minimal distance
@@ -244,7 +187,7 @@ public class Drone {
 		// Set the drone's new location
 		setPosition(newPosition);
 		
-		// Test function- 
+		// Sets previous best direction angle
 		setAngle(bestDirectionAngle);
 				
 		// Debugging purposes only
@@ -278,11 +221,10 @@ public class Drone {
 		var originalPosition = getTravelledPath().get(0);
 		
 		// Manually create the 2D paths for the buildings
-		var building1 = createPath2D(buildings.get(0));
-		var building2 = createPath2D(buildings.get(1));
-		var building3 = createPath2D(buildings.get(2));
-		var building4 = createPath2D(buildings.get(3));
-
+		var building1 = Map.createPath2D(buildings.get(0));
+		var building2 = Map.createPath2D(buildings.get(1));
+		var building3 = Map.createPath2D(buildings.get(2));
+		var building4 = Map.createPath2D(buildings.get(3));
 		
 		// Checks for each viable direction
 		double minDistance = Integer.MAX_VALUE;
@@ -293,7 +235,7 @@ public class Drone {
 			var droneNextPosition = droneCurrentPosition.nextPosition(new Direction(directionAngle));
 			double distance = calculateDistance(droneNextPosition, originalPosition);
 			
-			var lineStr = createLine2D(droneCurrentPosition, droneNextPosition);
+			var lineStr = Map.createLine2D(droneCurrentPosition, droneNextPosition);
 												
 			if (meetsAllRequiredConstraints(droneNextPosition, lineStr, building1, building2, building3, building4)) {
 				// Finally check for the minimal distance
@@ -308,16 +250,12 @@ public class Drone {
 		addPositionForTravelPath(newPosition);
 		// Set the drone's new location
 		setPosition(newPosition);
-		
-		// Test function- 
+		// Sets best previous direction angle for recording
 		setAngle(bestDirectionAngle);
 		
 		System.out.println("Best Direction Angle: " + bestDirectionAngle);
 		System.out.println("Min Distance: " + minDistance);
-		
-		//var originalPosition = getTravelledPath().get(0);
-		//var newPosition = position.nextPosition(new Direction(getAngle()());
-		
+				
 		double distance = calculateDistance(newPosition, originalPosition);
 		if (distance < 0.0002) {
 			setReturned();
