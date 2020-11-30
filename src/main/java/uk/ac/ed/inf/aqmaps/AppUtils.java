@@ -49,8 +49,8 @@ public final class AppUtils {
 	/** 3 helper methods for creating URL string for obtaining details for NoFlyZone buildings, 
 	 * SensorPoints AQ details and coordinates for SensorPoints **/
 	// Creates URL String for obtaining No-Fly-Zones buildings
-	private static String createURLStringForBuildings() {
-		String urlString = "http://localhost:9898/buildings/no-fly-zones.geojson";
+	private static String createURLStringForBuildings(String portStr) {
+		String urlString = "http://localhost:" + portStr + "/buildings/no-fly-zones.geojson";
 		return urlString;
 	}
 	
@@ -63,8 +63,8 @@ public final class AppUtils {
 	}
 	
 	// Create URL String for obtaining coordinates of that String-based location after getting the SensorPoint location
-	private static String createURLStringForSensorPointLocationDetails(String sensorPointLocation) {
-		String urlString = "http://localhost:9898";
+	private static String createURLStringForSensorPointLocationDetails(String portStr, String sensorPointLocation) {
+		String urlString = "http://localhost:" + portStr;
 		String[] words = sensorPointLocation.split("[.]");
 		urlString = urlString + "/words/" + words[0] + "/" + words[1] + "/" + words[2] + "/";
 		urlString += "details.json";
@@ -152,7 +152,7 @@ public final class AppUtils {
 	}
 	
 	// MAIN METHOD FOR deserializing the air quality data into a list of Sensor Points
-	private static List<SensorPoint> parseJsonAirQualityData(URL url) throws Exception {
+	private static List<SensorPoint> parseJsonAirQualityData(String portStr, URL url) throws Exception {
 		BufferedReader br = null;
 		// Create empty list of SensorPoints
 		List<SensorPoint> sensorPointList = new ArrayList<SensorPoint>();
@@ -172,7 +172,7 @@ public final class AppUtils {
 				String location = currentObject.get("location").getAsString();
 				
 				// From the location, obtain coordinates and assign them to SensorPoint
-				double[] coordinates = AppUtils.fetchSensorPointLocationCoords(location);
+				double[] coordinates = AppUtils.fetchSensorPointLocationCoords(portStr, location);
 				
 				double longitude = coordinates[0];
 				double latitude = coordinates[1];
@@ -228,13 +228,13 @@ public final class AppUtils {
 	}
 
 	// Main utility function for obtaining Sensor Point location coordinates
-	public static double[] fetchSensorPointLocationCoords(String sensorPointLocation) throws Exception {
+	public static double[] fetchSensorPointLocationCoords(String portStr, String sensorPointLocation) throws Exception {
 
 		// First create HTTP client
 		var client = HttpClient.newHttpClient();
 		
 		// Then create URL String
-		String urlString = AppUtils.createURLStringForSensorPointLocationDetails(sensorPointLocation);
+		String urlString = AppUtils.createURLStringForSensorPointLocationDetails(portStr, sensorPointLocation);
 		
 		// Create HTTPRequest
 		HttpRequest request = createHttpRequest(urlString);
@@ -279,17 +279,17 @@ public final class AppUtils {
 			System.exit(1);
 		}
 		
-		List<SensorPoint> sensorPoints = parseJsonAirQualityData(response.uri().toURL());
+		List<SensorPoint> sensorPoints = parseJsonAirQualityData(portStr, response.uri().toURL());
 		
 		return sensorPoints;
 	}
 
-	// Main utility function for obtaining list of NoFlyZoneBuildings
-	public static List<NoFlyZoneBuilding> fetchBuildingCoordinates() throws Exception {
+	// Main utility function for obtaining list of NoFlyZoneBuildings from given port String
+	public static List<NoFlyZoneBuilding> fetchBuildingCoordinates(String portStr) throws Exception {
 		
 		var client = HttpClient.newHttpClient();
 		
-		String urlString = AppUtils.createURLStringForBuildings();
+		String urlString = AppUtils.createURLStringForBuildings(portStr);
 		
 		HttpRequest request = createHttpRequest(urlString);
 		

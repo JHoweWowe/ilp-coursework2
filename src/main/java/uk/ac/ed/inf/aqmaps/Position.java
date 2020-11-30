@@ -1,25 +1,19 @@
 package uk.ac.ed.inf.aqmaps;
 
-import java.util.List;
-
-import com.mapbox.geojson.Point;
-import com.mapbox.geojson.Polygon;
-import com.mapbox.turf.TurfJoins;
-
 // Position class which determines longitude and latitude for drones and sensor points in the map
 public class Position {
 	
 	private double longitude;
 	private double latitude;
 	
-	private static final double droneMovementDegrees = 0.0003;
+	private final double droneMovementDegrees = 0.0003;
 	
 	public Position(double longitude, double latitude) {
 		this.longitude = longitude;
 		this.latitude = latitude;
 	}
 	
-	// Check if the drone is within confinement area
+	// Check if the drone's position is within confinement area
 	public boolean isWithinConfinementArea() {	    
 		if (((getLongitude() > -3.192473) && (getLongitude() < -3.184319)) && 
 		((getLatitude() > 55.942617) && (getLatitude() < 55.946233))) {
@@ -28,7 +22,7 @@ public class Position {
 		return false;
 	}
 	
-	// From direction degrees given, calculate drone's new position
+	// From direction in degrees given, calculate drone's new position
 	public Position nextPosition(Direction direction) {
 		
 		// Obtain drone's original position
@@ -47,7 +41,6 @@ public class Position {
 		var newPosition = new Position(longi, lat);
 		
 		return newPosition;
-		
 	}
 	
 	// Getter methods

@@ -32,11 +32,11 @@ public class App {
     		var point = Point.fromLngLat(longitude, latitude);
     		points.add(point);
     	}
-    	// From list of points, create a LineString for the drone algorithm
+    	// From list of points, create the list of lineStrings for the drone algorithm
     	var lineString = LineString.fromLngLats(points);
     	var droneFlightPathFeature = Feature.fromGeometry(lineString);
     	
-    	// Add drone flight path to the list of features
+    	// Add drone flight path feature to the list of features
     	features.add(droneFlightPathFeature);
     	
     	// Return the GeoJSON output
@@ -62,14 +62,14 @@ public class App {
     	
     	// Obtains the points / buildings from AppUtils class
     	List<SensorPoint> sensorPoints = AppUtils.fetchSensorPointData(dayStr, monthStr, yearStr, portStr);
-    	List<NoFlyZoneBuilding> buildings = AppUtils.fetchBuildingCoordinates();
+    	List<NoFlyZoneBuilding> buildings = AppUtils.fetchBuildingCoordinates(portStr);
     	
-    	// Instantiate drone's position with initial position
-    	var startingPosition = new Position(startingLongitude, startingLatitude);
-    	Drone drone = new Drone(startingPosition, sensorPoints, buildings);
+    	// Instantiate drone's position with given initial position
+    	var droneStartingPosition = new Position(startingLongitude, startingLatitude);
+    	Drone drone = new Drone(droneStartingPosition, sensorPoints, buildings);
     	
     	// Initialize drone's travel path with starting position
-    	drone.addPositionForTravelPath(startingPosition);
+    	drone.addPositionForTravelPath(droneStartingPosition);
     	
     	// TODO: The FeatureCollection doesn't need to include the buildings
     	var mapFC = Map.generateMapGeoJson(sensorPoints, buildings);
