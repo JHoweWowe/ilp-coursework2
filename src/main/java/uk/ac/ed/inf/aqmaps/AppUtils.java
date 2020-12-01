@@ -54,7 +54,7 @@ public final class AppUtils {
 		return urlString;
 	}
 	
-	// Creates URL String for obtaining the SensorPoints AQ details
+	// Creates URL String for obtaining the SensorPoints AQ details from the air-quality-data.json file
 	private static String createURLStringForSensorPointsAirQualityData(String dayStr, String monthStr, String yearStr, String portStr) {
 		String urlString = "http://localhost:";
 		urlString = urlString + portStr + "/maps/" + yearStr + "/" + monthStr + "/" + dayStr + "/";
@@ -164,7 +164,7 @@ public final class AppUtils {
 			// JSONArray has already been created from root
 			JsonArray jArray = new Gson().fromJson(br, JsonArray.class);
 
-			// Assume there will always be 33 points to be read
+			// Assume the first 33 points will be read
 			for (int i = 0; i < 33; i++) {
 				// Obtain current location
 				JsonObject currentObject = jArray.get(i).getAsJsonObject();
@@ -180,7 +180,7 @@ public final class AppUtils {
 				var batteryPercentage = currentObject.get("battery").getAsDouble();
 				var reading = currentObject.get("reading").getAsString();
 				
-				Position position = new Position(longitude, latitude);
+				var position = new Position(longitude, latitude);
 				
 				SensorPoint sensorpoint = new SensorPoint(location,position,batteryPercentage,reading);
 				sensorPointList.add(sensorpoint);
@@ -237,13 +237,13 @@ public final class AppUtils {
 		String urlString = AppUtils.createURLStringForSensorPointLocationDetails(portStr, sensorPointLocation);
 		
 		// Create HTTPRequest
-		HttpRequest request = createHttpRequest(urlString);
+		HttpRequest request = AppUtils.createHttpRequest(urlString);
 		
 		// Send HTTPResponse
 		HttpResponse<String> response = null;
 		
 		try {
-			response = sendHttpResponse(client, request);
+			response = AppUtils.sendHttpResponse(client, request);
 			//System.out.println(response.uri());
 			//System.out.println(response.uri().toURL());
 		} 
@@ -305,7 +305,6 @@ public final class AppUtils {
 		List<NoFlyZoneBuilding> buildings = parseGeoJsonBuildings(response.uri().toURL());
 		
 		return buildings;
-		
 	}
 	
 	// Main method- for debugging purposes ONLY

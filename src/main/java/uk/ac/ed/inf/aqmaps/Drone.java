@@ -39,7 +39,7 @@ public class Drone {
 	public Drone(Position position, List<SensorPoint> points, List<NoFlyZoneBuilding> buildingsToAvoid) {
 		this.position = position;
 		// Drone's visited Sensorpoints should be empty but notVisited should be the points given
-		visited = new ArrayList<SensorPoint>();
+		this.visited = new ArrayList<SensorPoint>();
 		this.notVisited = points;
 		// Drone's initial travel path should be completely empty
 		this.travelledPath = new ArrayList<Position>();

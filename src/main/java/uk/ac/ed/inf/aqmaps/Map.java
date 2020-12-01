@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
+import com.mapbox.geojson.LineString;
 import com.mapbox.geojson.Point;
 import com.mapbox.geojson.Polygon;
 
@@ -34,7 +35,7 @@ public class Map {
     			return rgbString;
     		}
     		
-    		// Otherwise, convert the 
+    		// Otherwise, convert the reading value into a double
     		double value = Double.parseDouble(readingValueStr);
     		
             if ((value >= 0) && (value < 32)) {
@@ -93,7 +94,7 @@ public class Map {
     	return markerSymbol;
     }
     
-    public static String generateMapGeoJson(List<SensorPoint> sensorPoints, List<NoFlyZoneBuilding> buildings) {
+    public static String generateMapGeoJson(List<SensorPoint> sensorPoints) {
     	
     	var features = new ArrayList<Feature>();
     	
@@ -111,14 +112,6 @@ public class Map {
             feature.addStringProperty("marker-color", readingValueToRGBString(sensorPoint.getSensorReading()));
             feature.addStringProperty("marker-symbol", readingValueMarkerSymbol(sensorPoint.getSensorReading()));
     		
-    		features.add(feature);
-    	}
-    	
-    	// NOTE: Useful for visualization purposes- not intended to be displayed in GeoJSON output
-    	for (NoFlyZoneBuilding building : buildings) {
-    		var coordinates = building.getCoordinates();
-    		var polygon = Polygon.fromLngLats(List.of(coordinates));
-    		var feature = Feature.fromGeometry(polygon);
     		features.add(feature);
     	}
     	
@@ -181,5 +174,34 @@ public class Map {
 		  }
 		return false;
 	}
+	
+    // Creates a GeoJSON String which generates drone's flight path from the drone's designated travel path and
+	// FeatureCollection maps
+    public static String generateFinalGeoJson(List<Position> path, FeatureCollection fc) {
+    	
+    	// Obtain existing features from map details as a FeatureCollection
+    	var features = fc.features();
+    	
+    	// Obtain drone flight path and implement it as a LineString and add it as a FeatureCollection
+    	var points = new ArrayList<Point>();
+    	for (int i = 0; i < path.size(); i++) {
+    		var longitude = path.get(i).getLongitude();
+    		var latitude = path.get(i).getLatitude();
+    		var point = Point.fromLngLat(longitude, latitude);
+    		points.add(point);
+    	}
+    	// From list of points, create the complete LineString for the drone algorithm
+    	var lineString = LineString.fromLngLats(points);
+    	var droneFlightPathFeature = Feature.fromGeometry(lineString);
+    	
+    	// Add drone flight path feature to the list of features
+    	features.add(droneFlightPathFeature);
+    	
+    	// Return the GeoJSON output
+    	var featureCollection = FeatureCollection.fromFeatures(features);
+    	
+    	return featureCollection.toJson();
+    }
+
  
 }

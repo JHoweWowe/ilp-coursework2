@@ -1,50 +1,15 @@
 package uk.ac.ed.inf.aqmaps;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
-import com.mapbox.geojson.LineString;
-import com.mapbox.geojson.Point;
-import com.mapbox.geojson.Polygon;
 
 import java.io.*;
 
 /**
- * Main application which generates GeoJSON and flight path text files based from command line arguments
- *
+ * Main application runs the 
  */
 public class App {
-    
-    // Creates a GeoJSON String which generates drone's flight path from the drone's designated travel path and
-	// FeatureCollection maps
-    public static String generateDronePathGeoJSON(List<Position> path, FeatureCollection fc) {
-    	
-    	// Obtain existing features from map details as a FeatureCollection
-    	var features = fc.features();
-    	
-    	// Obtain drone flight path and implement it as a LineString and add it as a FeatureCollection
-    	var points = new ArrayList<Point>();
-    	for (int i = 0; i < path.size(); i++) {
-    		var longitude = path.get(i).getLongitude();
-    		var latitude = path.get(i).getLatitude();
-    		var point = Point.fromLngLat(longitude, latitude);
-    		points.add(point);
-    	}
-    	// From list of points, create the list of lineStrings for the drone algorithm
-    	var lineString = LineString.fromLngLats(points);
-    	var droneFlightPathFeature = Feature.fromGeometry(lineString);
-    	
-    	// Add drone flight path feature to the list of features
-    	features.add(droneFlightPathFeature);
-    	
-    	// Return the GeoJSON output
-    	var featureCollection = FeatureCollection.fromFeatures(features);
-    	
-    	return featureCollection.toJson();
-    }
-    
+        
     public static void main(String[] args) throws Exception {
     	    	
     	if (args.length != 7) {
@@ -64,15 +29,15 @@ public class App {
     	List<SensorPoint> sensorPoints = AppUtils.fetchSensorPointData(dayStr, monthStr, yearStr, portStr);
     	List<NoFlyZoneBuilding> buildings = AppUtils.fetchBuildingCoordinates(portStr);
     	
+    	// NOTE: The GeoJSON FeatureCollection Map doesn't need to include the No-Fly-Zone buildings
+    	var mapFC = Map.generateMapGeoJson(sensorPoints);
+    	
     	// Instantiate drone's position with given initial position
     	var droneStartingPosition = new Position(startingLongitude, startingLatitude);
     	Drone drone = new Drone(droneStartingPosition, sensorPoints, buildings);
     	
     	// Initialize drone's travel path with starting position
     	drone.addPositionForTravelPath(droneStartingPosition);
-    	
-    	// TODO: The FeatureCollection doesn't need to include the buildings
-    	var mapFC = Map.generateMapGeoJson(sensorPoints, buildings);
     	
     	// Drone flies
     	drone.generateGreedyFlightPath();
@@ -81,7 +46,7 @@ public class App {
     	var dronePath = drone.getTravelledPath();
     	
     	// Generates final FeatureCollection
-    	var finalFC = generateDronePathGeoJSON(dronePath, FeatureCollection.fromJson(mapFC));
+    	var finalFC = Map.generateFinalGeoJson(dronePath, FeatureCollection.fromJson(mapFC));
     	
     	System.out.println(finalFC);
     	
