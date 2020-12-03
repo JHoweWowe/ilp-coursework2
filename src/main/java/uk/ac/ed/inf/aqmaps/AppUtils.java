@@ -242,15 +242,9 @@ public final class AppUtils {
 		// Send HTTPResponse
 		HttpResponse<String> response = null;
 		
-		try {
-			response = AppUtils.sendHttpResponse(client, request);
-			//System.out.println(response.uri());
-			//System.out.println(response.uri().toURL());
-		} 
-		catch (Exception e) {
-			System.err.println("Error occurred: " + e.getMessage());
-			System.exit(1);
-		}
+		response = AppUtils.sendHttpResponse(client, request);
+		//System.out.println(response.uri());
+		//System.out.println(response.uri().toURL());
 		
 		double[] coordinates = AppUtils.parseJsonSensorPointLocation(response.uri().toURL());
 		
@@ -265,21 +259,15 @@ public final class AppUtils {
 		
 		var urlString = AppUtils.createURLStringForSensorPointsAirQualityData(dayStr, monthStr, yearStr, portStr);
 		
-		HttpRequest request = createHttpRequest(urlString);
+		HttpRequest request = AppUtils.createHttpRequest(urlString);
 		
 		HttpResponse<String> response = null;
 
-		try {
-			response = sendHttpResponse(client, request);
-			//System.out.println(response.uri());
-			//System.out.println(response.uri().toURL());
-		} 
-		catch (Exception e) {
-			System.err.println("Exception occurred: " + e.getMessage());
-			System.exit(1);
-		}
+		response = AppUtils.sendHttpResponse(client, request);
+		//System.out.println(response.uri());
+		//System.out.println(response.uri().toURL());
 		
-		List<SensorPoint> sensorPoints = parseJsonAirQualityData(portStr, response.uri().toURL());
+		List<SensorPoint> sensorPoints = AppUtils.parseJsonAirQualityData(portStr, response.uri().toURL());
 		
 		return sensorPoints;
 	}
@@ -291,18 +279,13 @@ public final class AppUtils {
 		
 		String urlString = AppUtils.createURLStringForBuildings(portStr);
 		
-		HttpRequest request = createHttpRequest(urlString);
+		HttpRequest request = AppUtils.createHttpRequest(urlString);
 		
 		HttpResponse<String> response = null;
-		try {
-			response = sendHttpResponse(client, request);
-		}
-		catch (Exception e) {
-			System.err.println("Exception occurred" + e.getMessage());
-			System.exit(1);
-		}
 		
-		List<NoFlyZoneBuilding> buildings = parseGeoJsonBuildings(response.uri().toURL());
+		response = AppUtils.sendHttpResponse(client, request);
+		
+		List<NoFlyZoneBuilding> buildings = AppUtils.parseGeoJsonBuildings(response.uri().toURL());
 		
 		return buildings;
 	}

@@ -33,7 +33,7 @@ public class Drone {
 	// One of the attributes required to record every movement
 	private int lastBestDirectionAngle;
 	
-	private int numberOfMoves = 150;
+	private int numberOfMoves;
 	
 	// When the drone is instantiated, drone should not have visited any points so far
 	public Drone(Position position, List<SensorPoint> points, List<NoFlyZoneBuilding> buildingsToAvoid) {
@@ -48,6 +48,7 @@ public class Drone {
 		
 		this.lastBestDirectionAngle = 0;
 		this.sensoredAllPointsAndNearOriginalLocation = false;
+		this.numberOfMoves = 150;
 	}
 		
 	// MAIN METHOD: Flight Path- Greedy Algorithm [Somewhat efficient]
@@ -80,7 +81,7 @@ public class Drone {
 			if (notVisited.isEmpty() && (!(isReturned()))) {
 				var dronePosition = getPosition();
 				
-				System.out.println("Drone returning towards original location");
+				//System.out.println("Drone returning towards original location");
 				returnTowardsOriginalLocation();
 				
 				var lastBestDirectionAngle = getAngle();
@@ -145,7 +146,6 @@ public class Drone {
 	// Searches and determines which direction should the drone fly in 
 	// FOR each move AFTER knowing which sensor point to go to
 	
-	// Returns a String representation of the movement while doing the movement itself
 	public void move() {
 		// Obtains list of NoFlyZoneBuildings
 		var buildings = getNoFlyZoneBuildings();
@@ -191,10 +191,10 @@ public class Drone {
 		setAngle(bestDirectionAngle);
 				
 		// Debugging purposes only
-		System.out.println(getPosition().getLongitude());
-		System.out.println(getPosition().getLatitude());
-		System.out.println("Best Direction Angle: " + bestDirectionAngle);
-		System.out.println("Min Distance: " + minDistance);
+		//System.out.println(getPosition().getLongitude());
+		//System.out.println(getPosition().getLatitude());
+		//System.out.println("Best Direction Angle: " + bestDirectionAngle);
+		//System.out.println("Min Distance: " + minDistance);
 						
 	}
 	
@@ -253,8 +253,9 @@ public class Drone {
 		// Sets best previous direction angle for recording
 		setAngle(bestDirectionAngle);
 		
-		System.out.println("Best Direction Angle: " + bestDirectionAngle);
-		System.out.println("Min Distance: " + minDistance);
+		// Debugging purposes only
+		//System.out.println("Best Direction Angle: " + bestDirectionAngle);
+		//System.out.println("Min Distance: " + minDistance);
 				
 		double distance = calculateDistance(newPosition, originalPosition);
 		if (distance < 0.0002) {

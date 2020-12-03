@@ -6,11 +6,13 @@ import com.mapbox.geojson.FeatureCollection;
 import java.io.*;
 
 /**
- * Main application runs the 
+ * Main application which runs the drone simulation 
  */
 public class App {
         
     public static void main(String[] args) throws Exception {
+    	
+    	long startTime = System.nanoTime();
     	    	
     	if (args.length != 7) {
     		throw new IllegalArgumentException("Please input the correct number of arguments");
@@ -50,6 +52,13 @@ public class App {
     	
     	System.out.println(finalFC);
     	
+    	// For cohesiveness, prints out necessary information for researchers and developers
+    	System.out.println("Map Accessed: " + yearStr + "-" + monthStr + "-" + dayStr);
+    	System.out.println("Did the drone take readings for all air-quality sensors?");
+    	System.out.println(drone.getNotVisitedSensorPoints().isEmpty());
+    	System.out.println("Did the drone return close to its original position?");
+    	System.out.println(drone.isReturned());
+    	    	
     	/** Write to stream according to coursework section 2.4 **/
     	// Create flight path text files
     	String flightPathTextFile = "flightpath-" + dayStr + "-" + monthStr + "-" + yearStr + ".txt";
@@ -63,6 +72,10 @@ public class App {
     	String mapGeoJsonReadingsTextFile = "readings-" + dayStr + "-" + monthStr + "-" + yearStr + ".geojson";
     	PrintWriter output2 = new PrintWriter(mapGeoJsonReadingsTextFile);
     	output2.println(finalFC);
-    	output2.close();	
+    	output2.close();
+    	
+    	long endTime = System.nanoTime();
+    	long totalTime = endTime - startTime;
+    	System.out.println("Execution Time in Seconds: " + totalTime / 1000000000.0 + " seconds");
     }
 }
