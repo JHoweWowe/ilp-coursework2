@@ -33,7 +33,11 @@ public class Drone {
 	// One of the attributes required to record every movement
 	private int lastBestDirectionAngle;
 	
+	private List<Integer> droneDirectionAngles;
+	
 	private int numberOfMoves;
+	
+	private boolean isStuck;
 	
 	// When the drone is instantiated, drone should not have visited any points so far
 	public Drone(Position position, List<SensorPoint> points, List<NoFlyZoneBuilding> buildingsToAvoid) {
@@ -49,22 +53,28 @@ public class Drone {
 		this.lastBestDirectionAngle = 0;
 		this.sensoredAllPointsAndNearOriginalLocation = false;
 		this.numberOfMoves = 150;
+		
+		this.droneDirectionAngles = new ArrayList<Integer>();
+		this.isStuck = false;
 	}
 		
 	// MAIN METHOD: Flight Path- Greedy Algorithm [Somewhat efficient]
 	public void generateGreedyFlightPath() {
 		while (numberOfMoves > 0) {
+			var list = getDroneDirectionAngles();
 			if (!(notVisited.isEmpty())) {
 				// Searches to find NOT VISITED closest SensorPoint based from drone position and then set it
 				var dronePosition = getPosition();
 				var sensorPoint = findClosestNotVisitedSensorPoint(dronePosition);
 				setNextSensorPoint(sensorPoint);
-				if (!(isVisited(sensorPoint))) {
+				if (!(isVisited(sensorPoint))) {					
 					// Move towards that sensor point which is not visited and take reading if applicable
 					move();
 					
 					var newDronePosition = getPosition();
 					var lastBestDirectionAngle = getAngle();
+					
+					list.add(lastBestDirectionAngle);
 
 					String pointStr = takeReading(newDronePosition);
 					
@@ -86,6 +96,8 @@ public class Drone {
 				
 				var lastBestDirectionAngle = getAngle();
 				var newDronePosition = getPosition();
+				
+				list.add(lastBestDirectionAngle);
 							
 				// Generates the movement String text- could be moved outside of function
 				int moveNumber = getMovements().size()+1;					
@@ -142,6 +154,89 @@ public class Drone {
 		
 	}
 	
+	public void handleStuckError() {
+		
+		var buildings = getNoFlyZoneBuildings();
+		
+		// Manually create the boundaries for the buildings using Path2D!
+		var building1 = Map.createPath2D(buildings.get(0));
+		var building2 = Map.createPath2D(buildings.get(1));
+		var building3 = Map.createPath2D(buildings.get(2));
+		var building4 = Map.createPath2D(buildings.get(3));		
+		
+		var list = getDroneDirectionAngles();
+		var path = getTravelledPath();
+		
+		// Manually determines drone is stuck if drone moves back and forth twice
+		if (path.size() >= 4) {
+			var latitude1 = Double.valueOf(path.get(path.size()-1).getLatitude());
+			var longitude1 = Double.valueOf(path.get(path.size()-1).getLongitude());
+			var latitude2 = Double.valueOf(path.get(path.size()-2).getLatitude());
+			var longitude2 = Double.valueOf(path.get(path.size()-2).getLongitude());
+			var latitude3 = Double.valueOf(path.get(path.size()-3).getLatitude());
+			var longitude3 = Double.valueOf(path.get(path.size()-3).getLongitude());
+			var latitude4 = Double.valueOf(path.get(path.size()-4).getLatitude());
+			var longitude4 = Double.valueOf(path.get(path.size()-4).getLongitude());
+
+			if (latitude1.equals(latitude3) && (longitude1.equals(longitude3))) {
+				if (latitude2.equals(latitude4) && (longitude2.equals(longitude4))) {
+					isStuck = true;
+					//TODO: Check if preferred angle's direction intersect with any of the buildings
+					// Check for edge cases
+					int[] angles = new int[2];
+					var angle = list.get(list.size()-2);
+					angles[0] = angle - 10;
+					angles[1] = angle + 10;
+					
+					var newPosition = position.nextPosition(new Direction(angles[1]));
+					
+					var lineStr = Map.createLine2D(getPosition(), newPosition);
+					
+					if (meetsAllRequiredConstraints(newPosition, lineStr, building1, building2, building3, building4)) {
+						addPositionForTravelPath(newPosition);
+						// Set the drone's new location
+						setPosition(newPosition);
+						// Sets best previous direction angle for recording
+						setAngle(angles[1]);
+						
+						// Generates the movement String text
+						int moveNumber = getMovements().size()+1;					
+						String movement = createStringMovement(moveNumber, getPosition(), angles[1], 
+								newPosition, "null");
+						// Adds to the Movements function
+						getMovements().add(movement);
+						numberOfMoves--;
+						
+						var newPosition2 = newPosition.nextPosition(new Direction(angle));
+						addPositionForTravelPath(newPosition2);
+						// Set the drone's new location
+						setPosition(newPosition2);
+						// Sets best previous direction angle for recording
+						setAngle(angles[1]);
+						
+						moveNumber = getMovements().size()+1;					
+						movement = createStringMovement(moveNumber, getPosition(), angles[1], 
+								newPosition, "null");
+						// Adds to the Movements function
+						getMovements().add(movement);
+						numberOfMoves--;
+						
+						var newPosition3 = newPosition2.nextPosition(new Direction(angle));
+						addPositionForTravelPath(newPosition3);
+						// Set the drone's new location
+						setPosition(newPosition3);
+						// Sets best previous direction angle for recording
+						setAngle(angles[1]);
+						
+					}						
+
+				}
+
+			}
+		}
+
+	}
+	
 	/** Drone methods- includes movement and take reading of sensor point **/
 	// Searches and determines which direction should the drone fly in 
 	// FOR each move AFTER knowing which sensor point to go to
@@ -162,49 +257,55 @@ public class Drone {
 		var building3 = Map.createPath2D(buildings.get(2));
 		var building4 = Map.createPath2D(buildings.get(3));
 		
-		// Checks for each viable direction
-		double minDistance = Integer.MAX_VALUE;
-		int bestDirectionAngle = 0;
-		for (int directionAngle = 0; directionAngle < 360; directionAngle += 10) {
-			
-			// Check possible drone position
-			var droneNextPosition = droneCurrentPosition.nextPosition(new Direction(directionAngle));
-			double distance = calculateDistance(droneNextPosition, nextSensorPoint.getPosition());
-			
-			var lineStr = Map.createLine2D(droneCurrentPosition, droneNextPosition);
-												
-			if (meetsAllRequiredConstraints(droneNextPosition, lineStr, building1, building2, building3, building4)) {
-				// Finally check for the minimal distance
-				if (distance < minDistance) {
-					minDistance = distance;
-					bestDirectionAngle = directionAngle;
+		// Check if drone is stuck- force movement twice (should be refactored)
+		// Should also create the text movement for the additional forced movement
+		handleStuckError();
+		
+		if (isStuck() == false) {
+			// Checks for each viable direction
+			double minDistance = Integer.MAX_VALUE;
+			int bestDirectionAngle = 0;
+			for (int directionAngle = 0; directionAngle < 360; directionAngle += 10) {
+				
+				// Check possible drone position
+				var droneNextPosition = droneCurrentPosition.nextPosition(new Direction(directionAngle));
+				double distance = calculateDistance(droneNextPosition, nextSensorPoint.getPosition());
+				
+				var lineStr = Map.createLine2D(droneCurrentPosition, droneNextPosition);
+													
+				if (meetsAllRequiredConstraints(droneNextPosition, lineStr, building1, building2, building3, building4)) {
+					// Finally check for the minimal distance
+					if (distance < minDistance) {
+						minDistance = distance;
+						bestDirectionAngle = directionAngle;
+					}
 				}
 			}
-
+			var newPosition = position.nextPosition(new Direction(bestDirectionAngle));
+			addPositionForTravelPath(newPosition);
+			// Set the drone's new location
+			setPosition(newPosition);
+			
+			// Sets previous best direction angle
+			setAngle(bestDirectionAngle);
+					
+			// Debugging purposes only
+			//System.out.println(getPosition().getLongitude());
+			//System.out.println(getPosition().getLatitude());
+			//System.out.println("Best Direction Angle: " + bestDirectionAngle);
+			//System.out.println("Min Distance: " + minDistance);
 		}
-		var newPosition = position.nextPosition(new Direction(bestDirectionAngle));
-		addPositionForTravelPath(newPosition);
-		// Set the drone's new location
-		setPosition(newPosition);
 		
-		// Sets previous best direction angle
-		setAngle(bestDirectionAngle);
-				
-		// Debugging purposes only
-		//System.out.println(getPosition().getLongitude());
-		//System.out.println(getPosition().getLatitude());
-		//System.out.println("Best Direction Angle: " + bestDirectionAngle);
-		//System.out.println("Min Distance: " + minDistance);
+		isStuck = false;
 						
 	}
 	
 	// Take reading after the move
 	public String takeReading(Position dronePosition) {
-		//TODO: ONLY should add the SensorPoint if the drone's position is within 0.0002,
-		// and then you can add respective SensorPoint as visited and remove it from notVisited
 		String sensorPointStr = "null";
 		
 		double distance = calculateDistance(dronePosition, nextSensorPoint.getPosition());
+		// Only take reading if distance between drone's position and next sensor is within 0.0002 degrees
 		if (distance < 0.0002) {
 			visited.add(nextSensorPoint);
 			notVisited.remove(nextSensorPoint);
@@ -219,51 +320,57 @@ public class Drone {
 		var buildings = getNoFlyZoneBuildings();
 		var droneCurrentPosition = getPosition();
 		var originalPosition = getTravelledPath().get(0);
-		
+						
 		// Manually create the 2D paths for the buildings
 		var building1 = Map.createPath2D(buildings.get(0));
 		var building2 = Map.createPath2D(buildings.get(1));
 		var building3 = Map.createPath2D(buildings.get(2));
 		var building4 = Map.createPath2D(buildings.get(3));
 		
-		// Checks for each viable direction
-		double minDistance = Integer.MAX_VALUE;
-		int bestDirectionAngle = 0;
-		for (int directionAngle = 0; directionAngle < 360; directionAngle += 10) {
-			
-			// Check possible drone position
-			var droneNextPosition = droneCurrentPosition.nextPosition(new Direction(directionAngle));
-			double distance = calculateDistance(droneNextPosition, originalPosition);
-			
-			var lineStr = Map.createLine2D(droneCurrentPosition, droneNextPosition);
-												
-			if (meetsAllRequiredConstraints(droneNextPosition, lineStr, building1, building2, building3, building4)) {
-				// Finally check for the minimal distance
-				if (distance < minDistance) {
-					minDistance = distance;
-					bestDirectionAngle = directionAngle;
+		// Check if drone is stuck- force movement twice (should be refactored)
+		// Should also create the text movement for the additional forced movement
+		handleStuckError();
+				
+		if (isStuck() == false) {
+			// Checks for each viable direction
+			double minDistance = Integer.MAX_VALUE;
+			int bestDirectionAngle = 0;
+			for (int directionAngle = 0; directionAngle < 360; directionAngle += 10) {
+				
+				// Check possible drone position
+				var droneNextPosition = droneCurrentPosition.nextPosition(new Direction(directionAngle));
+				double distance = calculateDistance(droneNextPosition, originalPosition);
+				
+				var lineStr = Map.createLine2D(droneCurrentPosition, droneNextPosition);
+													
+				if (meetsAllRequiredConstraints(droneNextPosition, lineStr, building1, building2, building3, building4)) {
+					// Finally check for the minimal distance
+					if (distance < minDistance) {
+						minDistance = distance;
+						bestDirectionAngle = directionAngle;
+					}
 				}
+			}
+			
+			var newPosition = position.nextPosition(new Direction(bestDirectionAngle));
+			addPositionForTravelPath(newPosition);
+			setPosition(newPosition);
+			setAngle(bestDirectionAngle);
+			
+			// Debugging purposes only
+			//System.out.println("Best Direction Angle: " + bestDirectionAngle);
+			//System.out.println("Min Distance: " + minDistance);
+					
+			double distance = calculateDistance(newPosition, originalPosition);
+			if (distance < 0.0002) {
+				setReturned();
 			}
 
 		}
-		var newPosition = position.nextPosition(new Direction(bestDirectionAngle));
-		addPositionForTravelPath(newPosition);
-		// Set the drone's new location
-		setPosition(newPosition);
-		// Sets best previous direction angle for recording
-		setAngle(bestDirectionAngle);
 		
-		// Debugging purposes only
-		//System.out.println("Best Direction Angle: " + bestDirectionAngle);
-		//System.out.println("Min Distance: " + minDistance);
+		isStuck = false;
 				
-		double distance = calculateDistance(newPosition, originalPosition);
-		if (distance < 0.0002) {
-			setReturned();
-		}
-		
-	}
-	
+	}	
 	
 	// Helper function which creates a String representation of the drone movement
 	public String createStringMovement(int moveNumber, Position droneCurrentPosition, int bestDirectionAngle, 
@@ -331,6 +438,13 @@ public class Drone {
 	// Used for allow drone return towards original location
 	public boolean isReturned() {
 		return sensoredAllPointsAndNearOriginalLocation;
+	}
+	
+	public List<Integer> getDroneDirectionAngles() {
+		return droneDirectionAngles;
+	}
+	public boolean isStuck() {
+		return isStuck;
 	}
 	
 	/** SETTER METHODS **/

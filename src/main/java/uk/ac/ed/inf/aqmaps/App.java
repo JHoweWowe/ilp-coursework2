@@ -32,7 +32,7 @@ public class App {
     	List<NoFlyZoneBuilding> buildings = AppUtils.fetchBuildingCoordinates(portStr);
     	
     	// NOTE: The GeoJSON FeatureCollection Map doesn't need to include the No-Fly-Zone buildings
-    	var mapFC = Map.generateMapGeoJson(sensorPoints);
+    	var mapFC = Map.generateMapGeoJson(sensorPoints, buildings);
     	
     	// Instantiate drone's position with given initial position
     	var droneStartingPosition = new Position(startingLongitude, startingLatitude);
@@ -67,6 +67,7 @@ public class App {
     		output.println(drone.getMovements().get(i));
     	}
     	output.close();
+    	
     	// Create GeoJSON readings for particular day, month, year
     	// Default should be 01-01-2020 for submission purposes
     	String mapGeoJsonReadingsTextFile = "readings-" + dayStr + "-" + monthStr + "-" + yearStr + ".geojson";

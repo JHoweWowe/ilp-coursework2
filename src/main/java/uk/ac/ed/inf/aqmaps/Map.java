@@ -94,7 +94,7 @@ public class Map {
     	return markerSymbol;
     }
     
-    public static String generateMapGeoJson(List<SensorPoint> sensorPoints) {
+    public static String generateMapGeoJson(List<SensorPoint> sensorPoints, List<NoFlyZoneBuilding> buildings) {
     	
     	var features = new ArrayList<Feature>();
     	
@@ -112,6 +112,13 @@ public class Map {
             feature.addStringProperty("marker-color", readingValueToRGBString(sensorPoint.getSensorReading()));
             feature.addStringProperty("marker-symbol", readingValueMarkerSymbol(sensorPoint.getSensorReading()));
     		
+    		features.add(feature);
+    	}
+    	
+    	for (NoFlyZoneBuilding building : buildings) {
+    		var coordinates = building.getCoordinates();
+    		var polygon = Polygon.fromLngLats(List.of(coordinates));
+    		var feature = Feature.fromGeometry(polygon);
     		features.add(feature);
     	}
     	
