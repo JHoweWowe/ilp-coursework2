@@ -54,7 +54,7 @@ public class App {
     	
     	// For cohesiveness, prints out necessary information for researchers and developers
     	System.out.println("Map Accessed: " + yearStr + "-" + monthStr + "-" + dayStr);
-    	System.out.println("Did the drone take readings for all air-quality sensors?");
+    	System.out.println("Has the drone taken readings for all air-quality sensors on the map?");
     	System.out.println(drone.getNotVisitedSensorPoints().isEmpty());
     	System.out.println("Did the drone return close to its original position?");
     	System.out.println(drone.isReturned());

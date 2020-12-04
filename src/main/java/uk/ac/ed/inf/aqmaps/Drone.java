@@ -154,6 +154,7 @@ public class Drone {
 		
 	}
 	
+	// Attempts to get the drone out of the loop of moving back and forth
 	public void handleStuckError() {
 		
 		var buildings = getNoFlyZoneBuildings();
@@ -181,55 +182,59 @@ public class Drone {
 			if (latitude1.equals(latitude3) && (longitude1.equals(longitude3))) {
 				if (latitude2.equals(latitude4) && (longitude2.equals(longitude4))) {
 					isStuck = true;
-					//TODO: Check if preferred angle's direction intersect with any of the buildings
-					// Check for edge cases
-					int[] angles = new int[2];
-					var angle = list.get(list.size()-2);
-					angles[0] = angle - 10;
-					angles[1] = angle + 10;
+					// The attempted angles list MUST be in order
+					// When stuck, the drone is more likely to get stuck when the drone is
+					// perpendicular to the drone building segment
+					int[] attemptedAngles = {80,100,270,290,10,170,190,350,0};
 					
-					var newPosition = position.nextPosition(new Direction(angles[1]));
-					
-					var lineStr = Map.createLine2D(getPosition(), newPosition);
-					
-					if (meetsAllRequiredConstraints(newPosition, lineStr, building1, building2, building3, building4)) {
-						addPositionForTravelPath(newPosition);
-						// Set the drone's new location
-						setPosition(newPosition);
-						// Sets best previous direction angle for recording
-						setAngle(angles[1]);
+					for (int i = 0; i < attemptedAngles.length; i++) {
+						int angle = attemptedAngles[i];
+						var newPosition = position.nextPosition(new Direction(angle));
 						
-						// Generates the movement String text
-						int moveNumber = getMovements().size()+1;					
-						String movement = createStringMovement(moveNumber, getPosition(), angles[1], 
-								newPosition, "null");
-						// Adds to the Movements function
-						getMovements().add(movement);
-						numberOfMoves--;
+						var lineStr = Map.createLine2D(getPosition(), newPosition);
 						
-						var newPosition2 = newPosition.nextPosition(new Direction(angle));
-						addPositionForTravelPath(newPosition2);
-						// Set the drone's new location
-						setPosition(newPosition2);
-						// Sets best previous direction angle for recording
-						setAngle(angles[1]);
-						
-						moveNumber = getMovements().size()+1;					
-						movement = createStringMovement(moveNumber, getPosition(), angles[1], 
-								newPosition, "null");
-						// Adds to the Movements function
-						getMovements().add(movement);
-						numberOfMoves--;
-						
-						var newPosition3 = newPosition2.nextPosition(new Direction(angle));
-						addPositionForTravelPath(newPosition3);
-						// Set the drone's new location
-						setPosition(newPosition3);
-						// Sets best previous direction angle for recording
-						setAngle(angles[1]);
-						
-					}						
+						if (meetsAllRequiredConstraints(newPosition, lineStr, building1, building2, building3, building4)) {
+							addPositionForTravelPath(newPosition);
+							// Set the drone's new location
+							setPosition(newPosition);
+							// Sets best previous direction angle for recording
+							setAngle(angle);
+							
+							// Generates the movement String text
+							int moveNumber = getMovements().size()+1;					
+							String movement = createStringMovement(moveNumber, getPosition(), angle, 
+									newPosition, "null");
+							// Adds to the Movements function
+							getMovements().add(movement);
+							numberOfMoves--;
+							
+							var newPosition2 = newPosition.nextPosition(new Direction(angle));
+							addPositionForTravelPath(newPosition2);
+							// Set the drone's new location
+							setPosition(newPosition2);
+							// Sets best previous direction angle for recording
+							setAngle(angle);
+							
+							moveNumber = getMovements().size()+1;					
+							movement = createStringMovement(moveNumber, getPosition(), angle, 
+									newPosition, "null");
+							// Adds to the Movements function
+							getMovements().add(movement);
+							numberOfMoves--;
+							
+							var newPosition3 = newPosition2.nextPosition(new Direction(angle));
+							addPositionForTravelPath(newPosition3);
+							// Set the drone's new location
+							setPosition(newPosition3);
+							// Sets best previous direction angle for recording
+							setAngle(angle);
+							
+							break;
+							
+						}						
 
+					}
+										
 				}
 
 			}

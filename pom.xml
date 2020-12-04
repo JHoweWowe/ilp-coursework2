@@ -24,24 +24,7 @@
 	  <groupId>com.mapbox.mapboxsdk</groupId>
 	  <artifactId>mapbox-sdk-geojson</artifactId>
 	  <version>5.5.0</version>
-	</dependency>
-	
-	<!-- MapBox SDK Turf -->
-	<dependency>
-	  <groupId>com.mapbox.mapboxsdk</groupId>
-	  <artifactId>mapbox-sdk-turf</artifactId>
-	  <version>5.5.0</version>
-	</dependency>
-	
-	<!-- ALL Dependencies for Polygon Intersects- currently doesn't work -->
-    <dependency>
-      <groupId>org.webjars.npm</groupId>
-      <artifactId>turf__intersect</artifactId>
-      <version>6.2.0-alpha.2</version>
-    </dependency>
-
-
-	
+	</dependency>	
 	<!-- JUnit Testing -->
     <dependency>
       <groupId>junit</groupId>
