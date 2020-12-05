@@ -78,14 +78,18 @@ public class Drone {
 
 					String pointStr = takeReading(newDronePosition);
 					
-					// Generates the movement String text- could be moved outside of function
-					int moveNumber = getMovements().size()+1;					
-					String movement = createStringMovement(moveNumber, dronePosition, lastBestDirectionAngle, 
-							newDronePosition, pointStr);
-					// Adds to the Movements function
-					getMovements().add(movement);
+					if (isStuck == false) {
 					
-					numberOfMoves--;
+						// Generates the movement String text- could be moved outside of function
+						int moveNumber = getMovements().size()+1;					
+						String movement = createStringMovement(moveNumber, dronePosition, lastBestDirectionAngle, 
+								newDronePosition, pointStr);
+						// Adds to the Movements function
+						getMovements().add(movement);
+						
+						numberOfMoves--;
+					
+					}
 				}
 			}
 			if (notVisited.isEmpty() && (!(isReturned()))) {
@@ -98,15 +102,19 @@ public class Drone {
 				var newDronePosition = getPosition();
 				
 				list.add(lastBestDirectionAngle);
-							
-				// Generates the movement String text- could be moved outside of function
-				int moveNumber = getMovements().size()+1;					
-				String movement = createStringMovement(moveNumber, dronePosition, lastBestDirectionAngle, 
-						newDronePosition, "null");
-				// Adds to the Movements function
-				getMovements().add(movement);
 				
-				numberOfMoves--;
+				if (isStuck == false) {
+							
+					// Generates the movement String text- could be moved outside of function
+					int moveNumber = getMovements().size()+1;					
+					String movement = createStringMovement(moveNumber, dronePosition, lastBestDirectionAngle, 
+							newDronePosition, "null");
+					// Adds to the Movements function
+					getMovements().add(movement);
+					
+					numberOfMoves--; 
+				
+				}
 			}
 			if ((notVisited.isEmpty()) && (isReturned())) {
 				System.out.println("Number of Moves Remaining: " + numberOfMoves);
@@ -194,11 +202,6 @@ public class Drone {
 						var lineStr = Map.createLine2D(getPosition(), newPosition);
 						
 						if (meetsAllRequiredConstraints(newPosition, lineStr, building1, building2, building3, building4)) {
-							addPositionForTravelPath(newPosition);
-							// Set the drone's new location
-							setPosition(newPosition);
-							// Sets best previous direction angle for recording
-							setAngle(angle);
 							
 							// Generates the movement String text
 							int moveNumber = getMovements().size()+1;					
@@ -208,21 +211,33 @@ public class Drone {
 							getMovements().add(movement);
 							numberOfMoves--;
 							
+							addPositionForTravelPath(newPosition);
+							// Set the drone's new location
+							setPosition(newPosition);
+							// Sets best previous direction angle for recording
+							setAngle(angle);
+							
 							var newPosition2 = newPosition.nextPosition(new Direction(angle));
+							moveNumber = getMovements().size()+1;					
+							movement = createStringMovement(moveNumber, getPosition(), angle, 
+									newPosition2, "null");
+							// Adds to the Movements function
+							getMovements().add(movement);
+							numberOfMoves--;
+							
 							addPositionForTravelPath(newPosition2);
 							// Set the drone's new location
 							setPosition(newPosition2);
 							// Sets best previous direction angle for recording
 							setAngle(angle);
 							
-							moveNumber = getMovements().size()+1;					
-							movement = createStringMovement(moveNumber, getPosition(), angle, 
-									newPosition, "null");
-							// Adds to the Movements function
+							var newPosition3 = newPosition2.nextPosition(new Direction(angle));
+							moveNumber = getMovements().size()+1;
+							movement = createStringMovement(moveNumber, getPosition(), angle,
+									newPosition3, "null");
 							getMovements().add(movement);
 							numberOfMoves--;
 							
-							var newPosition3 = newPosition2.nextPosition(new Direction(angle));
 							addPositionForTravelPath(newPosition3);
 							// Set the drone's new location
 							setPosition(newPosition3);
@@ -262,6 +277,8 @@ public class Drone {
 		var building3 = Map.createPath2D(buildings.get(2));
 		var building4 = Map.createPath2D(buildings.get(3));
 		
+		isStuck = false;
+		
 		// Check if drone is stuck- force movement twice (should be refactored)
 		// Should also create the text movement for the additional forced movement
 		handleStuckError();
@@ -300,9 +317,7 @@ public class Drone {
 			//System.out.println("Best Direction Angle: " + bestDirectionAngle);
 			//System.out.println("Min Distance: " + minDistance);
 		}
-		
-		isStuck = false;
-						
+								
 	}
 	
 	// Take reading after the move
@@ -331,6 +346,8 @@ public class Drone {
 		var building2 = Map.createPath2D(buildings.get(1));
 		var building3 = Map.createPath2D(buildings.get(2));
 		var building4 = Map.createPath2D(buildings.get(3));
+		
+		isStuck = false;
 		
 		// Check if drone is stuck- force movement twice (should be refactored)
 		// Should also create the text movement for the additional forced movement
@@ -372,9 +389,7 @@ public class Drone {
 			}
 
 		}
-		
-		isStuck = false;
-				
+						
 	}	
 	
 	// Helper function which creates a String representation of the drone movement
