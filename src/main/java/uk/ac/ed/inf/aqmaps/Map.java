@@ -23,7 +23,7 @@ public class Map {
      * @param readingValueStr - Sensor Point's air quality reading value
      * @return String
      */
-    public static String readingValueToRGBString(String readingValueStr) {
+    public static String mapReadingValueToRGBString(String readingValueStr) {
     	
     	var rgbString = "";
     	
@@ -70,7 +70,7 @@ public class Map {
     	return rgbString;
     }
 	
-    public static String readingValueMarkerSymbol(String readingValueStr) {
+    public static String mapReadingValueToMarkerSymbol(String readingValueStr) {
     	
     	var markerSymbol = "";
     	
@@ -108,19 +108,19 @@ public class Map {
     		Point p = Point.fromLngLat(sensorPoint.getPosition().getLongitude(), sensorPoint.getPosition().getLatitude());
     		var feature = Feature.fromGeometry(p);
     		feature.addStringProperty("location", sensorPoint.getLocation());
-    		feature.addStringProperty("rgb-string", readingValueToRGBString(sensorPoint.getSensorReading()));
-            feature.addStringProperty("marker-color", readingValueToRGBString(sensorPoint.getSensorReading()));
-            feature.addStringProperty("marker-symbol", readingValueMarkerSymbol(sensorPoint.getSensorReading()));
+    		feature.addStringProperty("rgb-string", mapReadingValueToRGBString(sensorPoint.getSensorReading()));
+            feature.addStringProperty("marker-color", mapReadingValueToRGBString(sensorPoint.getSensorReading()));
+            feature.addStringProperty("marker-symbol", mapReadingValueToMarkerSymbol(sensorPoint.getSensorReading()));
     		
     		features.add(feature);
     	}
     	
-    	for (NoFlyZoneBuilding building : buildings) {
+    	/** for (NoFlyZoneBuilding building : buildings) {
     		var coordinates = building.getCoordinates();
     		var polygon = Polygon.fromLngLats(List.of(coordinates));
     		var feature = Feature.fromGeometry(polygon);
     		features.add(feature);
-    	}
+    	} **/
     	
     	var featureCollection = FeatureCollection.fromFeatures(features);
     	
@@ -152,11 +152,11 @@ public class Map {
 	}
 	
 	// Algorithm implemented with following pseudocode from StackOverFlow- reference included in report
-	public static boolean intersects(Path2D.Double path, Line2D line) {
+	public static boolean intersects(Path2D.Double building, Line2D.Double dronePath) {
 		Point2D.Double start = null;
 		Point2D.Double point1 = null;
 		Point2D.Double point2 = null;
-		for (PathIterator pi = path.getPathIterator(null); !pi.isDone(); pi.next()) {
+		for (PathIterator pi = building.getPathIterator(null); !pi.isDone(); pi.next()) {
 			double[] coordinates = new double[6];
 		    switch (pi.currentSegment(coordinates)) {
 		    case PathIterator.SEG_MOVETO:
@@ -175,7 +175,7 @@ public class Map {
 		    }
 		    if (point1 != null) {
 		      Line2D segment = new Line2D.Double(point1, point2);
-		      if (segment.intersectsLine(line))
+		      if (segment.intersectsLine(dronePath))
 		        return true;
 		    }
 		  }

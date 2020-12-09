@@ -50,18 +50,15 @@ public class App {
     	// Generates final FeatureCollection
     	var finalFC = Map.generateFinalGeoJson(dronePath, FeatureCollection.fromJson(mapFC));
     	
-    	System.out.println(finalFC);
+    	// Simple debugging purposes for copying final GeoJson into GeoJson.IO
+    	//System.out.println(finalFC);
     	
     	// For cohesiveness, prints out necessary information for researchers and developers
-    	System.out.println("Map Accessed: " + yearStr + "-" + monthStr + "-" + dayStr);
-    	System.out.println("Has the drone taken readings for all air-quality sensors on the map?");
-    	System.out.println(Drone.getNotVisitedSensorPoints().isEmpty());
-    	System.out.println("Did the drone return close to its original position?");
-    	System.out.println(drone.isReturned());
-    	
-    	// Test
-    	String dir = System.getProperty("user.dir");
-    	System.out.println(dir);
+    	System.out.println("Date of Map Accessed: " + yearStr + "-" + monthStr + "-" + dayStr);
+    	System.out.println("Has the drone taken readings "
+    			+ "for all air-quality sensors on the map: " + Drone.getNotVisitedSensorPoints().isEmpty());
+    	System.out.println("Did the drone return close to its original position: " + drone.isReturned());
+    	System.out.println("Number of Moves Taken: " + drone.getMovements().size());
     	
     	/** Write to stream according to coursework section 2.4 **/
     	// Create flight path text files
@@ -71,7 +68,6 @@ public class App {
     		output.println(drone.getMovements().get(i));
     	}
     	output.close();
-    	
     	// Create GeoJSON readings for particular day, month, year
     	// Default should be 01-01-2020 for submission purposes
     	String mapGeoJsonReadingsTextFile = "readings-" + dayStr + "-" + monthStr + "-" + yearStr + ".geojson";
