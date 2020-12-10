@@ -66,7 +66,7 @@ public class Drone {
 					
 						// Records the generated movement String text
 						int moveNumber = getMovements().size()+1;					
-						String movement = DroneUtils.createStringMovement(moveNumber, dronePosition, lastBestDirectionAngle, 
+						var movement = DroneUtils.createStringMovement(moveNumber, dronePosition, lastBestDirectionAngle, 
 								newDronePosition, pointStr);
 						// Adds to the Movements function
 						getMovements().add(movement);
@@ -122,10 +122,12 @@ public class Drone {
 
 			if (latitude1.equals(latitude3) && (longitude1.equals(longitude3))) {
 				if (latitude2.equals(latitude4) && (longitude2.equals(longitude4))) {
-					isStuck = true;
-					forceMove();
+					// Conditional statement needed otherwise drone may conduct more than 150 moves
+					if (numberOfMovesRemaining > 3) {
+						isStuck = true;
+						forceMove();
+					}
 				}
-
 			}
 		}
 	}
@@ -141,8 +143,9 @@ public class Drone {
 		var building4 = Map.createPath2D(buildings.get(3));
 		
 		// The attempted angles list MUST be in order
-		// When stuck, the drone is more likely to get stuck when the drone is located perpendicular to the drone building segment
-		int[] attemptedAngles = {80,100,270,290,10,170,190,350,0};
+		// Starts from quadrant 2 in a unit circle graph where
+		// it goes counter-clockwise from left movement to right movement
+		int[] attemptedAngles = {100,170,180,190,260,280,350,10,80};
 		
 		for (int i = 0; i < attemptedAngles.length; i++) {
 			int angle = attemptedAngles[i];
