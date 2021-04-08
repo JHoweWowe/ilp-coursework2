@@ -11,7 +11,7 @@
 **IDE**: Eclipse
 
 ## Personal Notes
-Tackling this coursework assignment was quite interesting, as I had to implement proper software engineering practices, previously learned in Year 1 and 2, into this project. In addition, this was quite practical where I got to apply concepts previously learned into a worldly problem.
+Tackling this coursework assignment was quite interesting, as I had to implement proper software engineering practices, previously learned in Year 1 and 2, into this project. In addition, I got to apply concepts previously learned in university into a world problem.
 
 ## Brief Instructions
 1. Starting up the WebServer
@@ -37,18 +37,20 @@ Tackling this coursework assignment was quite interesting, as I had to implement
     
 
 ## Code Organization
-* [ilp-coursework-document](): The coursework document contains in-depth details of the instructions and explainations of the given scenario.
-* [ilp-report](): My report contains the software architecture description, class documentation and further explains my drone flight-path algorithm in further detail.
-* [feedback.txt](): Grading scheme used to mark my project in full detail.
-* [ilp-results](): The folder contains the text and geojson files for each date, where the month and day is the same for the year 2020. Required for submission.
-* [pom.xml](): XML file to compile and create Maven project.
-* [WebServer](): Folder containing the JSON files for the buildings, maps, and words. 
+* [ilp-coursework-document](https://github.com/JHoweWowe/ilp-coursework2/blob/master/ilp-coursework-document.pdf): The coursework document contains in-depth details of the instructions and explainations of the given scenario. This file is created by the ILP course instructors.
+* [ilp-report](https://github.com/JHoweWowe/ilp-coursework2/blob/master/ilp-report.pdf): My report contains the software architecture description, class documentation and further explains my drone flight-path algorithm in further detail.
+* [feedback.txt](https://github.com/JHoweWowe/ilp-coursework2/blob/master/feedback.txt): Grading scheme used to mark my project in full detail.
+* [ilp-results](https://github.com/JHoweWowe/ilp-coursework2/tree/master/ilp-results): The folder contains the text and geojson files for each date, where the month and day is the same for the year 2020. Required for submission.
+* [pom.xml](https://github.com/JHoweWowe/ilp-coursework2/blob/master/pom.xml): XML file to compile and create Maven project.
+* [WebServer](https://github.com/JHoweWowe/ilp-coursework2/tree/master/WebServer): Folder containing the JSON files for the buildings, maps, and words. 
 
 ## Screenshots
 ![hi](2020-01-01-map.png)
+
 The first image above shows the algorithm generated for the date 2020-01-01. This clearly showed the drone in the middle of its flying route was stuck but managed to get out of the loop and finish the route.
 
 ![hi2](2020-03-03-map.png)
+
 The next image above shows the algorithm generated for the date 2020-03-03, simulating a perfect drone flight path.
 
 ## References
