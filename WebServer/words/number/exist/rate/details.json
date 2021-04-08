@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.18921,
+      "lat": 55.945073
+    },
+    "northeast": {
+      "lng": -3.189162,
+      "lat": 55.9451
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.189186,
+    "lat": 55.945087
+  },
+  "words": "number.exist.rate",
+  "language": "en",
+  "map": "https://w3w.co/number.exist.rate"
+}

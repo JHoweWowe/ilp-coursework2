@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.189836,
+      "lat": 55.944076
+    },
+    "northeast": {
+      "lng": -3.189788,
+      "lat": 55.944103
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.189812,
+    "lat": 55.94409
+  },
+  "words": "cliff.asleep.wedge",
+  "language": "en",
+  "map": "https://w3w.co/cliff.asleep.wedge"
+}

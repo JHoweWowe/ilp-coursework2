@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.185597,
+      "lat": 55.942863
+    },
+    "northeast": {
+      "lng": -3.185549,
+      "lat": 55.94289
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.185573,
+    "lat": 55.942877
+  },
+  "words": "dent.shins.cycle",
+  "language": "en",
+  "map": "https://w3w.co/dent.shins.cycle"
+}

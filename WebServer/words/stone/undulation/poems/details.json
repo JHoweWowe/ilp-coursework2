@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.191908,
+      "lat": 55.94599
+    },
+    "northeast": {
+      "lng": -3.191859,
+      "lat": 55.946017
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.191883,
+    "lat": 55.946003
+  },
+  "words": "stone.undulation.poems",
+  "language": "en",
+  "map": "https://w3w.co/stone.undulation.poems"
+}

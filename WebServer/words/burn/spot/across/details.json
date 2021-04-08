@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.189644,
+      "lat": 55.943807
+    },
+    "northeast": {
+      "lng": -3.189595,
+      "lat": 55.943834
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.189619,
+    "lat": 55.94382
+  },
+  "words": "burn.spot.across",
+  "language": "en",
+  "map": "https://w3w.co/burn.spot.across"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.190462,
+      "lat": 55.943968
+    },
+    "northeast": {
+      "lng": -3.190414,
+      "lat": 55.943995
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.190438,
+    "lat": 55.943982
+  },
+  "words": "pump.wheels.hulk",
+  "language": "en",
+  "map": "https://w3w.co/pump.wheels.hulk"
+}

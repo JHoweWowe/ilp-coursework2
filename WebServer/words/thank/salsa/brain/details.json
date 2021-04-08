@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.187813,
+      "lat": 55.944373
+    },
+    "northeast": {
+      "lng": -3.187765,
+      "lat": 55.9444
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.187789,
+    "lat": 55.944386
+  },
+  "words": "thank.salsa.brain",
+  "language": "en",
+  "map": "https://w3w.co/thank.salsa.brain"
+}

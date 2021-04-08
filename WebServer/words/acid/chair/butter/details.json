@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.18526,
+      "lat": 55.944561
+    },
+    "northeast": {
+      "lng": -3.185212,
+      "lat": 55.944588
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.185236,
+    "lat": 55.944575
+  },
+  "words": "acid.chair.butter",
+  "language": "en",
+  "map": "https://w3w.co/acid.chair.butter"
+}

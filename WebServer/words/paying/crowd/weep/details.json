@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.191089,
+      "lat": 55.944426
+    },
+    "northeast": {
+      "lng": -3.19104,
+      "lat": 55.944453
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.191065,
+    "lat": 55.94444
+  },
+  "words": "paying.crowd.weep",
+  "language": "en",
+  "map": "https://w3w.co/paying.crowd.weep"
+}

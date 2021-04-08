@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.189355,
+      "lat": 55.945639
+    },
+    "northeast": {
+      "lng": -3.189306,
+      "lat": 55.945666
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.18933,
+    "lat": 55.945653
+  },
+  "words": "museum.spicy.horns",
+  "language": "en",
+  "map": "https://w3w.co/museum.spicy.horns"
+}

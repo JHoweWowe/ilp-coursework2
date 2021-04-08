@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.187235,
+      "lat": 55.943321
+    },
+    "northeast": {
+      "lng": -3.187187,
+      "lat": 55.943348
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.187211,
+    "lat": 55.943335
+  },
+  "words": "scale.chair.kinds",
+  "language": "en",
+  "map": "https://w3w.co/scale.chair.kinds"
+}

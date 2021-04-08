@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.191281,
+      "lat": 55.945585
+    },
+    "northeast": {
+      "lng": -3.191233,
+      "lat": 55.945612
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.191257,
+    "lat": 55.945599
+  },
+  "words": "skins.engage.best",
+  "language": "en",
+  "map": "https://w3w.co/skins.engage.best"
+}

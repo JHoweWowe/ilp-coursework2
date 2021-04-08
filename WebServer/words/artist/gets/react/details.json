@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.186802,
+      "lat": 55.944561
+    },
+    "northeast": {
+      "lng": -3.186753,
+      "lat": 55.944588
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.186777,
+    "lat": 55.944575
+  },
+  "words": "artist.gets.react",
+  "language": "en",
+  "map": "https://w3w.co/artist.gets.react"
+}

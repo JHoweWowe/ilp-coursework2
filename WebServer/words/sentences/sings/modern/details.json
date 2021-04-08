@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.184971,
+      "lat": 55.943429
+    },
+    "northeast": {
+      "lng": -3.184923,
+      "lat": 55.943456
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.184947,
+    "lat": 55.943443
+  },
+  "words": "sentences.sings.modern",
+  "language": "en",
+  "map": "https://w3w.co/sentences.sings.modern"
+}

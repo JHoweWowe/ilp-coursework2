@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.191089,
+      "lat": 55.944696
+    },
+    "northeast": {
+      "lng": -3.19104,
+      "lat": 55.944723
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.191065,
+    "lat": 55.944709
+  },
+  "words": "estate.gave.votes",
+  "language": "en",
+  "map": "https://w3w.co/estate.gave.votes"
+}

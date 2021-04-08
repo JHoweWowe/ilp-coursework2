@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.185549,
+      "lat": 55.943968
+    },
+    "northeast": {
+      "lng": -3.185501,
+      "lat": 55.943995
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.185525,
+    "lat": 55.943982
+  },
+  "words": "manliness.poem.cliff",
+  "language": "en",
+  "map": "https://w3w.co/manliness.poem.cliff"
+}

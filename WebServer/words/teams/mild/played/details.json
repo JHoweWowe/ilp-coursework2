@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.186031,
+      "lat": 55.943887
+    },
+    "northeast": {
+      "lng": -3.185983,
+      "lat": 55.943914
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.186007,
+    "lat": 55.943901
+  },
+  "words": "teams.mild.played",
+  "language": "en",
+  "map": "https://w3w.co/teams.mild.played"
+}

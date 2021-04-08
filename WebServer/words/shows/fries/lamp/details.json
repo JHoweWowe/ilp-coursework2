@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.190077,
+      "lat": 55.94316
+    },
+    "northeast": {
+      "lng": -3.190029,
+      "lat": 55.943187
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.190053,
+    "lat": 55.943173
+  },
+  "words": "shows.fries.lamp",
+  "language": "en",
+  "map": "https://w3w.co/shows.fries.lamp"
+}

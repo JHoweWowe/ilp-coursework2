@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.184827,
+      "lat": 55.94316
+    },
+    "northeast": {
+      "lng": -3.184778,
+      "lat": 55.943187
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.184803,
+    "lat": 55.943173
+  },
+  "words": "brings.remedy.latter",
+  "language": "en",
+  "map": "https://w3w.co/brings.remedy.latter"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.189547,
+      "lat": 55.943537
+    },
+    "northeast": {
+      "lng": -3.189499,
+      "lat": 55.943564
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.189523,
+    "lat": 55.943551
+  },
+  "words": "cars.attend.hotels",
+  "language": "en",
+  "map": "https://w3w.co/cars.attend.hotels"
+}

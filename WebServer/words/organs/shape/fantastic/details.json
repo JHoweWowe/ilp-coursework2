@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.186127,
+      "lat": 55.944238
+    },
+    "northeast": {
+      "lng": -3.186079,
+      "lat": 55.944265
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.186103,
+    "lat": 55.944251
+  },
+  "words": "organs.shape.fantastic",
+  "language": "en",
+  "map": "https://w3w.co/organs.shape.fantastic"
+}

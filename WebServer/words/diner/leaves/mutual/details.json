@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.187283,
+      "lat": 55.945639
+    },
+    "northeast": {
+      "lng": -3.187235,
+      "lat": 55.945666
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.187259,
+    "lat": 55.945653
+  },
+  "words": "diner.leaves.mutual",
+  "language": "en",
+  "map": "https://w3w.co/diner.leaves.mutual"
+}

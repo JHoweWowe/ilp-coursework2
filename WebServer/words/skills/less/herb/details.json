@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188343,
+      "lat": 55.945505
+    },
+    "northeast": {
+      "lng": -3.188295,
+      "lat": 55.945531
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.188319,
+    "lat": 55.945518
+  },
+  "words": "skills.less.herb",
+  "language": "en",
+  "map": "https://w3w.co/skills.less.herb"
+}

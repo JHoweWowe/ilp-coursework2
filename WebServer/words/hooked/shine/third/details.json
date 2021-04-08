@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.189788,
+      "lat": 55.942648
+    },
+    "northeast": {
+      "lng": -3.18974,
+      "lat": 55.942675
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.189764,
+    "lat": 55.942661
+  },
+  "words": "hooked.shine.third",
+  "language": "en",
+  "map": "https://w3w.co/hooked.shine.third"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.191185,
+      "lat": 55.943348
+    },
+    "northeast": {
+      "lng": -3.191137,
+      "lat": 55.943375
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.191161,
+    "lat": 55.943362
+  },
+  "words": "meal.feed.large",
+  "language": "en",
+  "map": "https://w3w.co/meal.feed.large"
+}

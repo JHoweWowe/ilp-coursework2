@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.187042,
+      "lat": 55.942863
+    },
+    "northeast": {
+      "lng": -3.186994,
+      "lat": 55.94289
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.187018,
+    "lat": 55.942877
+  },
+  "words": "valve.elaborate.fortunate",
+  "language": "en",
+  "map": "https://w3w.co/valve.elaborate.fortunate"
+}

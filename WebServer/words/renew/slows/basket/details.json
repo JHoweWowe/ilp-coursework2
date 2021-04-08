@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.185838,
+      "lat": 55.946017
+    },
+    "northeast": {
+      "lng": -3.18579,
+      "lat": 55.946044
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.185814,
+    "lat": 55.94603
+  },
+  "words": "renew.slows.basket",
+  "language": "en",
+  "map": "https://w3w.co/renew.slows.basket"
+}

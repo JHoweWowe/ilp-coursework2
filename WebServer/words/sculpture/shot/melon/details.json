@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.190318,
+      "lat": 55.943699
+    },
+    "northeast": {
+      "lng": -3.19027,
+      "lat": 55.943726
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.190294,
+    "lat": 55.943712
+  },
+  "words": "sculpture.shot.melon",
+  "language": "en",
+  "map": "https://w3w.co/sculpture.shot.melon"
+}

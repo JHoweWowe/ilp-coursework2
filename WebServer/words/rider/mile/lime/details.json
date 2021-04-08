@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.184682,
+      "lat": 55.943861
+    },
+    "northeast": {
+      "lng": -3.184634,
+      "lat": 55.943887
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.184658,
+    "lat": 55.943874
+  },
+  "words": "rider.mile.lime",
+  "language": "en",
+  "map": "https://w3w.co/rider.mile.lime"
+}

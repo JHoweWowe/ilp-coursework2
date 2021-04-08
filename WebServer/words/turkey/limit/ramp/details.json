@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.189884,
+      "lat": 55.945478
+    },
+    "northeast": {
+      "lng": -3.189836,
+      "lat": 55.945505
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.18986,
+    "lat": 55.945491
+  },
+  "words": "turkey.limit.ramp",
+  "language": "en",
+  "map": "https://w3w.co/turkey.limit.ramp"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.189403,
+      "lat": 55.943268
+    },
+    "northeast": {
+      "lng": -3.189355,
+      "lat": 55.943295
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.189379,
+    "lat": 55.943281
+  },
+  "words": "rents.cone.stove",
+  "language": "en",
+  "map": "https://w3w.co/rents.cone.stove"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.190222,
+      "lat": 55.943429
+    },
+    "northeast": {
+      "lng": -3.190173,
+      "lat": 55.943456
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.190197,
+    "lat": 55.943443
+  },
+  "words": "arts.dish.scarcely",
+  "language": "en",
+  "map": "https://w3w.co/arts.dish.scarcely"
+}

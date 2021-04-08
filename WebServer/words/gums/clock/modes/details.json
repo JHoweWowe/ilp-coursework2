@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.187861,
+      "lat": 55.943214
+    },
+    "northeast": {
+      "lng": -3.187813,
+      "lat": 55.943241
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.187837,
+    "lat": 55.943227
+  },
+  "words": "gums.clock.modes",
+  "language": "en",
+  "map": "https://w3w.co/gums.clock.modes"
+}

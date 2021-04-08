@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.18738,
+      "lat": 55.943591
+    },
+    "northeast": {
+      "lng": -3.187331,
+      "lat": 55.943618
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.187355,
+    "lat": 55.943604
+  },
+  "words": "shut.stands.media",
+  "language": "en",
+  "map": "https://w3w.co/shut.stands.media"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188632,
+      "lat": 55.943106
+    },
+    "northeast": {
+      "lng": -3.188584,
+      "lat": 55.943133
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.188608,
+    "lat": 55.943119
+  },
+  "words": "groups.ideas.script",
+  "language": "en",
+  "map": "https://w3w.co/groups.ideas.script"
+}

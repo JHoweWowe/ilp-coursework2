@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.184827,
+      "lat": 55.945585
+    },
+    "northeast": {
+      "lng": -3.184778,
+      "lat": 55.945612
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.184803,
+    "lat": 55.945599
+  },
+  "words": "slave.rare.hogs",
+  "language": "en",
+  "map": "https://w3w.co/slave.rare.hogs"
+}

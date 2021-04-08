@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188873,
+      "lat": 55.943645
+    },
+    "northeast": {
+      "lng": -3.188825,
+      "lat": 55.943672
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.188849,
+    "lat": 55.943658
+  },
+  "words": "labels.hotels.alert",
+  "language": "en",
+  "map": "https://w3w.co/labels.hotels.alert"
+}

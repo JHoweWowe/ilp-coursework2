@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.185838,
+      "lat": 55.943537
+    },
+    "northeast": {
+      "lng": -3.18579,
+      "lat": 55.943564
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.185814,
+    "lat": 55.943551
+  },
+  "words": "record.sofa.sock",
+  "language": "en",
+  "map": "https://w3w.co/record.sofa.sock"
+}

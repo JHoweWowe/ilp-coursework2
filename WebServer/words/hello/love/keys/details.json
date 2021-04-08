@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.185164,
+      "lat": 55.943672
+    },
+    "northeast": {
+      "lng": -3.185116,
+      "lat": 55.943699
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.18514,
+    "lat": 55.943685
+  },
+  "words": "hello.love.keys",
+  "language": "en",
+  "map": "https://w3w.co/hello.love.keys"
+}

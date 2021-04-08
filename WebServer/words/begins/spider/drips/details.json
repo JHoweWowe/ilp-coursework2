@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.187524,
+      "lat": 55.943861
+    },
+    "northeast": {
+      "lng": -3.187476,
+      "lat": 55.943887
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.1875,
+    "lat": 55.943874
+  },
+  "words": "begins.spider.drips",
+  "language": "en",
+  "map": "https://w3w.co/begins.spider.drips"
+}

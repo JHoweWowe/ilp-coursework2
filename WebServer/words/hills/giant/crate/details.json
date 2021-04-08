@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.191137,
+      "lat": 55.944157
+    },
+    "northeast": {
+      "lng": -3.191089,
+      "lat": 55.944184
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.191113,
+    "lat": 55.94417
+  },
+  "words": "hills.giant.crate",
+  "language": "en",
+  "map": "https://w3w.co/hills.giant.crate"
+}

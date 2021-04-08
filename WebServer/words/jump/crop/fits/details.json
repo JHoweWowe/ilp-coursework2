@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.190462,
+      "lat": 55.94537
+    },
+    "northeast": {
+      "lng": -3.190414,
+      "lat": 55.945397
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.190438,
+    "lat": 55.945383
+  },
+  "words": "jump.crop.fits",
+  "language": "en",
+  "map": "https://w3w.co/jump.crop.fits"
+}

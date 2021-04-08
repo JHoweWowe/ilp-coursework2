@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.192245,
+      "lat": 55.9451
+    },
+    "northeast": {
+      "lng": -3.192197,
+      "lat": 55.945127
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.192221,
+    "lat": 55.945114
+  },
+  "words": "useful.hike.trades",
+  "language": "en",
+  "map": "https://w3w.co/useful.hike.trades"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.185694,
+      "lat": 55.944346
+    },
+    "northeast": {
+      "lng": -3.185645,
+      "lat": 55.944373
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.18567,
+    "lat": 55.944359
+  },
+  "words": "atoms.vanish.foods",
+  "language": "en",
+  "map": "https://w3w.co/atoms.vanish.foods"
+}

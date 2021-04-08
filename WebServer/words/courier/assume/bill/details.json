@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.184778,
+      "lat": 55.942998
+    },
+    "northeast": {
+      "lng": -3.18473,
+      "lat": 55.943025
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.184754,
+    "lat": 55.943012
+  },
+  "words": "courier.assume.bill",
+  "language": "en",
+  "map": "https://w3w.co/courier.assume.bill"
+}

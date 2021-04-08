@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.185067,
+      "lat": 55.945855
+    },
+    "northeast": {
+      "lng": -3.185019,
+      "lat": 55.945882
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.185043,
+    "lat": 55.945868
+  },
+  "words": "rider.aura.bulb",
+  "language": "en",
+  "map": "https://w3w.co/rider.aura.bulb"
+}

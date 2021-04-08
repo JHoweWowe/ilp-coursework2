@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188969,
+      "lat": 55.943914
+    },
+    "northeast": {
+      "lng": -3.188921,
+      "lat": 55.943941
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.188945,
+    "lat": 55.943928
+  },
+  "words": "noted.friday.jams",
+  "language": "en",
+  "map": "https://w3w.co/noted.friday.jams"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.189981,
+      "lat": 55.946017
+    },
+    "northeast": {
+      "lng": -3.189933,
+      "lat": 55.946044
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.189957,
+    "lat": 55.94603
+  },
+  "words": "love.behind.orchestra",
+  "language": "en",
+  "map": "https://w3w.co/love.behind.orchestra"
+}

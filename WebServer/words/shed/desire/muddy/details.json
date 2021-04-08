@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.185645,
+      "lat": 55.945747
+    },
+    "northeast": {
+      "lng": -3.185597,
+      "lat": 55.945774
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.185621,
+    "lat": 55.945761
+  },
+  "words": "shed.desire.muddy",
+  "language": "en",
+  "map": "https://w3w.co/shed.desire.muddy"
+}

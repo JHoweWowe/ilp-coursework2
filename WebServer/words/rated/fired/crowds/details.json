@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.186416,
+      "lat": 55.944642
+    },
+    "northeast": {
+      "lng": -3.186368,
+      "lat": 55.944669
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.186392,
+    "lat": 55.944656
+  },
+  "words": "rated.fired.crowds",
+  "language": "en",
+  "map": "https://w3w.co/rated.fired.crowds"
+}

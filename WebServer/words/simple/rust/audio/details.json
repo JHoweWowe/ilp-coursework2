@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.191185,
+      "lat": 55.945963
+    },
+    "northeast": {
+      "lng": -3.191137,
+      "lat": 55.94599
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.191161,
+    "lat": 55.945976
+  },
+  "words": "simple.rust.audio",
+  "language": "en",
+  "map": "https://w3w.co/simple.rust.audio"
+}

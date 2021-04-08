@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.191618,
+      "lat": 55.945181
+    },
+    "northeast": {
+      "lng": -3.19157,
+      "lat": 55.945208
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.191594,
+    "lat": 55.945195
+  },
+  "words": "hills.feels.tunes",
+  "language": "en",
+  "map": "https://w3w.co/hills.feels.tunes"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.187669,
+      "lat": 55.94413
+    },
+    "northeast": {
+      "lng": -3.18762,
+      "lat": 55.944157
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.187645,
+    "lat": 55.944143
+  },
+  "words": "bound.ends.matter",
+  "language": "en",
+  "map": "https://w3w.co/bound.ends.matter"
+}

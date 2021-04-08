@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.186561,
+      "lat": 55.944912
+    },
+    "northeast": {
+      "lng": -3.186513,
+      "lat": 55.944939
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.186537,
+    "lat": 55.944925
+  },
+  "words": "laws.merit.bleak",
+  "language": "en",
+  "map": "https://w3w.co/laws.merit.bleak"
+}

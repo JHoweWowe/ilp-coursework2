@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.19104,
+      "lat": 55.944966
+    },
+    "northeast": {
+      "lng": -3.190992,
+      "lat": 55.944992
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.191016,
+    "lat": 55.944979
+  },
+  "words": "shapes.sheep.nature",
+  "language": "en",
+  "map": "https://w3w.co/shapes.sheep.nature"
+}

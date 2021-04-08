@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188198,
+      "lat": 55.945208
+    },
+    "northeast": {
+      "lng": -3.18815,
+      "lat": 55.945235
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.188174,
+    "lat": 55.945222
+  },
+  "words": "office.chair.card",
+  "language": "en",
+  "map": "https://w3w.co/office.chair.card"
+}

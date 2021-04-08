@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188439,
+      "lat": 55.944292
+    },
+    "northeast": {
+      "lng": -3.188391,
+      "lat": 55.944319
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.188415,
+    "lat": 55.944305
+  },
+  "words": "trades.rare.cable",
+  "language": "en",
+  "map": "https://w3w.co/trades.rare.cable"
+}

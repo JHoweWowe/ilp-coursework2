@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188825,
+      "lat": 55.945424
+    },
+    "northeast": {
+      "lng": -3.188776,
+      "lat": 55.945451
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.188801,
+    "lat": 55.945437
+  },
+  "words": "shady.soft.phones",
+  "language": "en",
+  "map": "https://w3w.co/shady.soft.phones"
+}

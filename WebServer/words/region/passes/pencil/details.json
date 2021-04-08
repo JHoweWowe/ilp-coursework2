@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.189258,
+      "lat": 55.942998
+    },
+    "northeast": {
+      "lng": -3.18921,
+      "lat": 55.943025
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.189234,
+    "lat": 55.943012
+  },
+  "words": "region.passes.pencil",
+  "language": "en",
+  "map": "https://w3w.co/region.passes.pencil"
+}

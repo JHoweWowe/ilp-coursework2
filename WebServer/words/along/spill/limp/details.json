@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.191185,
+      "lat": 55.942729
+    },
+    "northeast": {
+      "lng": -3.191137,
+      "lat": 55.942755
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.191161,
+    "lat": 55.942742
+  },
+  "words": "along.spill.limp",
+  "language": "en",
+  "map": "https://w3w.co/along.spill.limp"
+}

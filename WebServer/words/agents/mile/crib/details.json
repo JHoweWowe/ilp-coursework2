@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188054,
+      "lat": 55.944966
+    },
+    "northeast": {
+      "lng": -3.188006,
+      "lat": 55.944992
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.18803,
+    "lat": 55.944979
+  },
+  "words": "agents.mile.crib",
+  "language": "en",
+  "map": "https://w3w.co/agents.mile.crib"
+}

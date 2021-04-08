@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.184538,
+      "lat": 55.945289
+    },
+    "northeast": {
+      "lng": -3.184489,
+      "lat": 55.945316
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.184513,
+    "lat": 55.945302
+  },
+  "words": "settle.title.united",
+  "language": "en",
+  "map": "https://w3w.co/settle.title.united"
+}

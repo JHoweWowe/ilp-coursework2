@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.186561,
+      "lat": 55.944049
+    },
+    "northeast": {
+      "lng": -3.186513,
+      "lat": 55.944076
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.186537,
+    "lat": 55.944063
+  },
+  "words": "lime.learns.front",
+  "language": "en",
+  "map": "https://w3w.co/lime.learns.front"
+}

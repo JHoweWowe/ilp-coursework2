@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.191137,
+      "lat": 55.943618
+    },
+    "northeast": {
+      "lng": -3.191089,
+      "lat": 55.943645
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.191113,
+    "lat": 55.943631
+  },
+  "words": "loaf.cheer.slave",
+  "language": "en",
+  "map": "https://w3w.co/loaf.cheer.slave"
+}

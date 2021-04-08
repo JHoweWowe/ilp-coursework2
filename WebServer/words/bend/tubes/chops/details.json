@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188487,
+      "lat": 55.945747
+    },
+    "northeast": {
+      "lng": -3.188439,
+      "lat": 55.945774
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.188463,
+    "lat": 55.945761
+  },
+  "words": "bend.tubes.chops",
+  "language": "en",
+  "map": "https://w3w.co/bend.tubes.chops"
+}

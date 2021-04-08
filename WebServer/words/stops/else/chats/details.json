@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188921,
+      "lat": 55.945693
+    },
+    "northeast": {
+      "lng": -3.188873,
+      "lat": 55.94572
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.188897,
+    "lat": 55.945707
+  },
+  "words": "stops.else.chats",
+  "language": "en",
+  "map": "https://w3w.co/stops.else.chats"
+}

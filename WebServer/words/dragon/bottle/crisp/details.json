@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.186753,
+      "lat": 55.945154
+    },
+    "northeast": {
+      "lng": -3.186705,
+      "lat": 55.945181
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.186729,
+    "lat": 55.945168
+  },
+  "words": "dragon.bottle.crisp",
+  "language": "en",
+  "map": "https://w3w.co/dragon.bottle.crisp"
+}

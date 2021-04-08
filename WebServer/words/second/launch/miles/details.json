@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.189933,
+      "lat": 55.94289
+    },
+    "northeast": {
+      "lng": -3.189884,
+      "lat": 55.942917
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.189908,
+    "lat": 55.942904
+  },
+  "words": "second.launch.miles",
+  "language": "en",
+  "map": "https://w3w.co/second.launch.miles"
+}

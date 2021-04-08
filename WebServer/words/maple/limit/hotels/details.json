@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.19104,
+      "lat": 55.945235
+    },
+    "northeast": {
+      "lng": -3.190992,
+      "lat": 55.945262
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.191016,
+    "lat": 55.945248
+  },
+  "words": "maple.limit.hotels",
+  "language": "en",
+  "map": "https://w3w.co/maple.limit.hotels"
+}

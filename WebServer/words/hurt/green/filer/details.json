@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.187909,
+      "lat": 55.944696
+    },
+    "northeast": {
+      "lng": -3.187861,
+      "lat": 55.944723
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.187885,
+    "lat": 55.944709
+  },
+  "words": "hurt.green.filer",
+  "language": "en",
+  "map": "https://w3w.co/hurt.green.filer"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.190751,
+      "lat": 55.943079
+    },
+    "northeast": {
+      "lng": -3.190703,
+      "lat": 55.943106
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.190727,
+    "lat": 55.943092
+  },
+  "words": "relate.chill.vest",
+  "language": "en",
+  "map": "https://w3w.co/relate.chill.vest"
+}

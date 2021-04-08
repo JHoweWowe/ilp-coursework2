@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.187717,
+      "lat": 55.942755
+    },
+    "northeast": {
+      "lng": -3.187669,
+      "lat": 55.942782
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.187693,
+    "lat": 55.942769
+  },
+  "words": "panic.squad.danger",
+  "language": "en",
+  "map": "https://w3w.co/panic.squad.danger"
+}

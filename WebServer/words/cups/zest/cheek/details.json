@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.187813,
+      "lat": 55.945531
+    },
+    "northeast": {
+      "lng": -3.187765,
+      "lat": 55.945558
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.187789,
+    "lat": 55.945545
+  },
+  "words": "cups.zest.cheek",
+  "language": "en",
+  "map": "https://w3w.co/cups.zest.cheek"
+}

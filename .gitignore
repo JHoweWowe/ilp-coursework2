@@ -1,1 +1,10 @@
 /target/
+.classpath
+.project
+dependency-reduced-pom.xml
+hs_err_pid12349.log
+hs_err_pid18511.log
+hs_err_pid45667.log
+hs_err_pid49006.log
+hs_err_pid49810.log
+.settings

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.189162,
+      "lat": 55.944184
+    },
+    "northeast": {
+      "lng": -3.189114,
+      "lat": 55.944211
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.189138,
+    "lat": 55.944197
+  },
+  "words": "spoon.invest.every",
+  "language": "en",
+  "map": "https://w3w.co/spoon.invest.every"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.186272,
+      "lat": 55.942782
+    },
+    "northeast": {
+      "lng": -3.186224,
+      "lat": 55.942809
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.186248,
+    "lat": 55.942796
+  },
+  "words": "under.retire.bump",
+  "language": "en",
+  "map": "https://w3w.co/under.retire.bump"
+}

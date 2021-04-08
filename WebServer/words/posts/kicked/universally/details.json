@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.18632,
+      "lat": 55.945747
+    },
+    "northeast": {
+      "lng": -3.186272,
+      "lat": 55.945774
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.186296,
+    "lat": 55.945761
+  },
+  "words": "posts.kicked.universally",
+  "language": "en",
+  "map": "https://w3w.co/posts.kicked.universally"
+}

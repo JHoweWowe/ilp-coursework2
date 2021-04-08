@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188728,
+      "lat": 55.945154
+    },
+    "northeast": {
+      "lng": -3.18868,
+      "lat": 55.945181
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.188704,
+    "lat": 55.945168
+  },
+  "words": "rooms.lamp.teach",
+  "language": "en",
+  "map": "https://w3w.co/rooms.lamp.teach"
+}

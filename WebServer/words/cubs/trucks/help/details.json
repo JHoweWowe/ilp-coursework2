@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.18815,
+      "lat": 55.94378
+    },
+    "northeast": {
+      "lng": -3.188102,
+      "lat": 55.943807
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.188126,
+    "lat": 55.943793
+  },
+  "words": "cubs.trucks.help",
+  "language": "en",
+  "map": "https://w3w.co/cubs.trucks.help"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188728,
+      "lat": 55.943375
+    },
+    "northeast": {
+      "lng": -3.18868,
+      "lat": 55.943402
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.188704,
+    "lat": 55.943389
+  },
+  "words": "system.speak.guard",
+  "language": "en",
+  "map": "https://w3w.co/system.speak.guard"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.184489,
+      "lat": 55.944939
+    },
+    "northeast": {
+      "lng": -3.184441,
+      "lat": 55.944966
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.184465,
+    "lat": 55.944952
+  },
+  "words": "sports.topic.clocks",
+  "language": "en",
+  "map": "https://w3w.co/sports.topic.clocks"
+}

@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188006,
+      "lat": 55.943483
+    },
+    "northeast": {
+      "lng": -3.187958,
+      "lat": 55.94351
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.187982,
+    "lat": 55.943497
+  },
+  "words": "scare.cubs.resort",
+  "language": "en",
+  "map": "https://w3w.co/scare.cubs.resort"
+}

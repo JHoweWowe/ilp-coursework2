@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.186946,
+      "lat": 55.945936
+    },
+    "northeast": {
+      "lng": -3.186898,
+      "lat": 55.945963
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.186922,
+    "lat": 55.945949
+  },
+  "words": "bikes.stocks.mass",
+  "language": "en",
+  "map": "https://w3w.co/bikes.stocks.mass"
+}

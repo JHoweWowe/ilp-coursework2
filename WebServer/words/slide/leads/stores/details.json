@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.184923,
+      "lat": 55.944723
+    },
+    "northeast": {
+      "lng": -3.184875,
+      "lat": 55.94475
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.184899,
+    "lat": 55.944736
+  },
+  "words": "slide.leads.stores",
+  "language": "en",
+  "map": "https://w3w.co/slide.leads.stores"
+}

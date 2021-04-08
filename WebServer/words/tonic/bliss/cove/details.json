@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.190607,
+      "lat": 55.942809
+    },
+    "northeast": {
+      "lng": -3.190559,
+      "lat": 55.942836
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.190583,
+    "lat": 55.942823
+  },
+  "words": "tonic.bliss.cove",
+  "language": "en",
+  "map": "https://w3w.co/tonic.bliss.cove"
+}

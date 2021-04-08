@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.185356,
+      "lat": 55.946124
+    },
+    "northeast": {
+      "lng": -3.185308,
+      "lat": 55.946151
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.185332,
+    "lat": 55.946138
+  },
+  "words": "prime.rent.silk",
+  "language": "en",
+  "map": "https://w3w.co/prime.rent.silk"
+}

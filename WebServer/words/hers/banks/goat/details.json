@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.186368,
+      "lat": 55.942944
+    },
+    "northeast": {
+      "lng": -3.18632,
+      "lat": 55.942971
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.186344,
+    "lat": 55.942958
+  },
+  "words": "hers.banks.goat",
+  "language": "en",
+  "map": "https://w3w.co/hers.banks.goat"
+}

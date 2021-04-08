@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.188584,
+      "lat": 55.946044
+    },
+    "northeast": {
+      "lng": -3.188536,
+      "lat": 55.946071
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.18856,
+    "lat": 55.946057
+  },
+  "words": "boost.radar.stress",
+  "language": "en",
+  "map": "https://w3w.co/boost.radar.stress"
+}

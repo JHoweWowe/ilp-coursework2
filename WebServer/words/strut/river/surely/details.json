@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.186994,
+      "lat": 55.942675
+    },
+    "northeast": {
+      "lng": -3.186946,
+      "lat": 55.942702
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.18697,
+    "lat": 55.942688
+  },
+  "words": "strut.river.surely",
+  "language": "en",
+  "map": "https://w3w.co/strut.river.surely"
+}

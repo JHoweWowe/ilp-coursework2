@@ -1,0 +1,21 @@
+{
+  "country": "GB",
+  "square": {
+    "southwest": {
+      "lng": -3.187042,
+      "lat": 55.943968
+    },
+    "northeast": {
+      "lng": -3.186994,
+      "lat": 55.943995
+    }
+  },
+  "nearestPlace": "Edinburgh",
+  "coordinates": {
+    "lng": -3.187018,
+    "lat": 55.943982
+  },
+  "words": "renew.ears.tend",
+  "language": "en",
+  "map": "https://w3w.co/renew.ears.tend"
+}
