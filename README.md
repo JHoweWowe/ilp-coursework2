@@ -4,7 +4,7 @@
 
  Using my own enhanced greedy algorithm, described in the ILP Report, has allowed me to implement this task effectively.
 
-**Final Grade:** 81% (A2)
+**Final Grade:** A2
 
 **Programming Language**: Java
 
@@ -39,6 +39,7 @@ Tackling this coursework assignment was quite interesting, as I had to implement
 ## Code Organization
 * [ilp-coursework-document](https://github.com/JHoweWowe/ilp-coursework2/blob/master/ilp-coursework-document.pdf): The coursework document contains in-depth details of the instructions and explainations of the given scenario. This file is created by the ILP course instructors.
 * [ilp-report](https://github.com/JHoweWowe/ilp-coursework2/blob/master/ilp-report.pdf): My report contains the software architecture description, class documentation and further explains my drone flight-path algorithm in further detail.
+* [auto-report.txt](https://github.com/JHoweWowe/ilp-coursework2/blob/master/auto-report.txt): The grading scheme used to generate the score for route planning.
 * [feedback.txt](https://github.com/JHoweWowe/ilp-coursework2/blob/master/feedback.txt): Grading scheme used to mark my project in full detail.
 * [ilp-results](https://github.com/JHoweWowe/ilp-coursework2/tree/master/ilp-results): The folder contains the text and geojson files for each date, where the month and day is the same for the year 2020. Required for submission.
 * [pom.xml](https://github.com/JHoweWowe/ilp-coursework2/blob/master/pom.xml): XML file to compile and create Maven project.

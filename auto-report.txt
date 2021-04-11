@@ -1,0 +1,433 @@
+Begin report for student s1840358.
+
+  File: ilp-results/flightpath-01-01-2020.txt
+  > File is 111 lines long.
+  > [Line 25] Drone has read 11 sensors. [SUCCESS]
+  > [Line 43] Drone has read 22 sensors. [SUCCESS]
+  > [Line 102] Drone has read 33 sensors. [SUCCESS]
+  > [Line 111] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 111] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 111] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-01-01-2020.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > All low battery locations were reported correctly.  [SUCCESS]
+  Score: 4/4.
+
+  File: ilp-results/flightpath-02-02-2020.txt
+  > File is 94 lines long.
+  > [Line 18] Drone has read 11 sensors. [SUCCESS]
+  > [Line 55] Drone has read 22 sensors. [SUCCESS]
+  > [Line 89] Drone has read 33 sensors. [SUCCESS]
+  > [Line 94] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 94] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 94] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-02-02-2020.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at only.fairly.rift was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-03-03-2020.txt
+  > File is 113 lines long.
+  > [Line 24] Drone has read 11 sensors. [SUCCESS]
+  > [Line 55] Drone has read 22 sensors. [SUCCESS]
+  > [Line 88] Drone has read 33 sensors. [SUCCESS]
+  > [Line 113] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 113] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 113] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-03-03-2020.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > All low battery locations were reported correctly.  [SUCCESS]
+  Score: 4/4.
+
+  File: ilp-results/flightpath-04-04-2020.txt
+  > File is 108 lines long.
+  > [Line 25] Drone has read 11 sensors. [SUCCESS]
+  > [Line 59] Drone has read 22 sensors. [SUCCESS]
+  > [Line 102] Drone has read 33 sensors. [SUCCESS]
+  > [Line 108] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 108] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 108] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-04-04-2020.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at hello.love.keys was visited but not reported correctly. [PENALTY]
+  > Low battery at region.passes.pencil was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-05-05-2020.txt
+  > File is 132 lines long.
+  > [Line 33] Drone has read 11 sensors. [SUCCESS]
+  > [Line 61] Drone has read 22 sensors. [SUCCESS]
+  > [Line 121] Drone has read 33 sensors. [SUCCESS]
+  > [Line 132] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 132] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  Score: 5/6.
+
+  File: ilp-results/readings-05-05-2020.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at spicy.bunch.shady was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-06-06-2020.txt
+  > File is 117 lines long.
+  > [Line 22] Drone has read 11 sensors. [SUCCESS]
+  > [Line 59] Drone has read 22 sensors. [SUCCESS]
+  > [Line 106] Drone has read 33 sensors. [SUCCESS]
+  > [Line 117] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 117] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 117] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-06-06-2020.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at skills.less.herb was visited but not reported correctly. [PENALTY]
+  > Low battery at slips.mass.baking was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-07-07-2020.txt
+  > File is 119 lines long.
+  > [Line 19] Drone has read 11 sensors. [SUCCESS]
+  > [Line 56] Drone has read 22 sensors. [SUCCESS]
+  > [Line 107] Drone has read 33 sensors. [SUCCESS]
+  > [Line 119] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 119] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 119] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-07-07-2020.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at tonic.bliss.cove was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-08-08-2020.txt
+  > File is 105 lines long.
+  > [Line 28] Drone has read 11 sensors. [SUCCESS]
+  > [Line 63] Drone has read 22 sensors. [SUCCESS]
+  > [Line 99] Drone has read 33 sensors. [SUCCESS]
+  > [Line 105] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 105] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 105] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-08-08-2020.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at rooms.lamp.teach was visited but not reported correctly. [PENALTY]
+  > Low battery at stops.else.chats was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-09-09-2020.txt
+  > File is 98 lines long.
+  > [Line 19] Drone has read 11 sensors. [SUCCESS]
+  > [Line 55] Drone has read 22 sensors. [SUCCESS]
+  > [Line 91] Drone has read 33 sensors. [SUCCESS]
+  > [Line 98] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 98] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 98] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-09-09-2020.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at toned.deflection.bland was visited but not reported correctly. [PENALTY]
+  > Low battery at artist.gets.react was visited but not reported correctly. [PENALTY]
+  > Low battery at shady.soft.phones was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-10-10-2020.txt
+  > File is 130 lines long.
+  > [Line 29] Drone has read 11 sensors. [SUCCESS]
+  > [Line 60] Drone has read 22 sensors. [SUCCESS]
+  > [Line 121] Drone has read 33 sensors. [SUCCESS]
+  > [Line 130] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 130] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  Score: 5/6.
+
+  File: ilp-results/readings-10-10-2020.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > All low battery locations were reported correctly.  [SUCCESS]
+  Score: 4/4.
+
+  File: ilp-results/flightpath-11-11-2020.txt
+  > File is 129 lines long.
+  > [Line 27] Drone has read 11 sensors. [SUCCESS]
+  > [Line 81] Drone has read 22 sensors. [SUCCESS]
+  > [Line 120] Drone has read 33 sensors. [SUCCESS]
+  > [Line 129] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 129] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 129] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-11-11-2020.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at brings.remedy.latter was visited but not reported correctly. [PENALTY]
+  > Low battery at valve.elaborate.fortunate was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-12-12-2020.txt
+  > File is 113 lines long.
+  > [Line 21] Drone has read 11 sensors. [SUCCESS]
+  > [Line 53] Drone has read 22 sensors. [SUCCESS]
+  > [Line 112] Drone has read 33 sensors. [SUCCESS]
+  > [Line 113] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 113] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 113] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-12-12-2020.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > All low battery locations were reported correctly.  [SUCCESS]
+  Score: 4/4.
+
+  File: ilp-results/flightpath-01-01-2021.txt
+  > File is 111 lines long.
+  > [Line 27] Drone has read 11 sensors. [SUCCESS]
+  > [Line 62] Drone has read 22 sensors. [SUCCESS]
+  > [Line 105] Drone has read 33 sensors. [SUCCESS]
+  > [Line 111] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 111] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 111] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-01-01-2021.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > All low battery locations were reported correctly.  [SUCCESS]
+  Score: 4/4.
+
+  File: ilp-results/flightpath-02-02-2021.txt
+  > File is 93 lines long.
+  > [Line 21] Drone has read 11 sensors. [SUCCESS]
+  > [Line 62] Drone has read 22 sensors. [SUCCESS]
+  > [Line 90] Drone has read 33 sensors. [SUCCESS]
+  > [Line 93] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 93] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 93] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-02-02-2021.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > All low battery locations were reported correctly.  [SUCCESS]
+  Score: 4/4.
+
+  File: ilp-results/flightpath-03-03-2021.txt
+  > File is 130 lines long.
+  > [Line 27] Drone has read 11 sensors. [SUCCESS]
+  > [Line 52] Drone has read 22 sensors. [SUCCESS]
+  > [Line 120] Drone has read 33 sensors. [SUCCESS]
+  > [Line 130] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 130] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  Score: 5/6.
+
+  File: ilp-results/readings-03-03-2021.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at hers.banks.goat was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-04-04-2021.txt
+  > File is 62 lines long.
+  > [Line 21] Drone has read 11 sensors. [SUCCESS]
+  > [Line 34] Drone has read 22 sensors. [SUCCESS]
+  > [Line 53] Drone has read 33 sensors. [SUCCESS]
+  > [Line 62] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 62] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 62] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-04-04-2021.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > All low battery locations were reported correctly.  [SUCCESS]
+  Score: 4/4.
+
+  File: ilp-results/flightpath-05-05-2021.txt
+  > File is 93 lines long.
+  > [Line 21] Drone has read 11 sensors. [SUCCESS]
+  > [Line 62] Drone has read 22 sensors. [SUCCESS]
+  > [Line 90] Drone has read 33 sensors. [SUCCESS]
+  > [Line 93] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 93] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 93] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-05-05-2021.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > All low battery locations were reported correctly.  [SUCCESS]
+  Score: 4/4.
+
+  File: ilp-results/flightpath-06-06-2021.txt
+  > File is 113 lines long.
+  > [Line 24] Drone has read 11 sensors. [SUCCESS]
+  > [Line 55] Drone has read 22 sensors. [SUCCESS]
+  > [Line 88] Drone has read 33 sensors. [SUCCESS]
+  > [Line 113] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 113] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 113] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-06-06-2021.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at meal.feed.large was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-07-07-2021.txt
+  > File is 123 lines long.
+  > [Line 21] Drone has read 11 sensors. [SUCCESS]
+  > [Line 50] Drone has read 22 sensors. [SUCCESS]
+  > [Line 116] Drone has read 33 sensors. [SUCCESS]
+  > [Line 123] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 123] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 123] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-07-07-2021.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at rated.fired.crowds was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-08-08-2021.txt
+  > File is 132 lines long.
+  > [Line 33] Drone has read 11 sensors. [SUCCESS]
+  > [Line 61] Drone has read 22 sensors. [SUCCESS]
+  > [Line 121] Drone has read 33 sensors. [SUCCESS]
+  > [Line 132] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 132] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  Score: 5/6.
+
+  File: ilp-results/readings-08-08-2021.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at hooked.shine.third was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-09-09-2021.txt
+  > File is 117 lines long.
+  > [Line 22] Drone has read 11 sensors. [SUCCESS]
+  > [Line 59] Drone has read 22 sensors. [SUCCESS]
+  > [Line 106] Drone has read 33 sensors. [SUCCESS]
+  > [Line 117] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 117] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 117] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-09-09-2021.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > All low battery locations were reported correctly.  [SUCCESS]
+  Score: 4/4.
+
+  File: ilp-results/flightpath-10-10-2021.txt
+  > File is 119 lines long.
+  > [Line 19] Drone has read 11 sensors. [SUCCESS]
+  > [Line 56] Drone has read 22 sensors. [SUCCESS]
+  > [Line 107] Drone has read 33 sensors. [SUCCESS]
+  > [Line 119] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 119] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 119] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-10-10-2021.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at second.launch.miles was visited but not reported correctly. [PENALTY]
+  > Low battery at diner.leaves.mutual was visited but not reported correctly. [PENALTY]
+  > Low battery at sculpture.shot.melon was visited but not reported correctly. [PENALTY]
+  > Low battery at begins.spider.drips was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 0/4.
+
+  File: ilp-results/flightpath-11-11-2021.txt
+  > File is 105 lines long.
+  > [Line 28] Drone has read 11 sensors. [SUCCESS]
+  > [Line 63] Drone has read 22 sensors. [SUCCESS]
+  > [Line 99] Drone has read 33 sensors. [SUCCESS]
+  > [Line 105] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 105] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 105] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-11-11-2021.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at posts.kicked.universally was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  File: ilp-results/flightpath-12-12-2021.txt
+  > File is 97 lines long.
+  > [Line 26] Drone has read 11 sensors. [SUCCESS]
+  > [Line 53] Drone has read 22 sensors. [SUCCESS]
+  > [Line 88] Drone has read 33 sensors. [SUCCESS]
+  > [Line 97] Final position of the drone is close to the starting position. [SUCCESS]
+  > [Line 97] All sensors seen and returned home. Both objectives completed. [SUCCESS]
+  > [Line 97] Efficient flight path: both objectives achieved in under 130 moves. [SUCCESS]
+  Score: 6/6.
+
+  File: ilp-results/readings-12-12-2021.geojson
+  > File has 33 Features of type Point. [SUCCESS]
+  > File has 33 Features of type Point with a W3W location. [SUCCESS]
+  > File has one Feature of type LineString. [SUCCESS]
+  > Low battery at strut.river.surely was visited but not reported correctly. [PENALTY]
+  > Some low battery locations were not reported.  [INCOMPLETE]
+  Score: 3/4.
+
+  Total result: 218/240.
+
+End report for student s1840358.
